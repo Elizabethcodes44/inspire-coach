@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
+import NavBar from './components/NavBar';
+import { ROUTES, THEME_OPTIONS } from './global';
+import useLocalStorage from 'use-local-storage';
+
+function Home() {
+  return <h2>Home Page</h2>;
+}
+
+function ManageTasks() {
+  return <h2>Manage Tasks Page</h2>;
+}
 
 function App() {
+  const defaultDark = window.matchMedia(`(prefers-color-scheme: ${THEME_OPTIONS.DARK})`).matches;
+  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? THEME_OPTIONS.DARK : THEME_OPTIONS.LIGHT);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App" data-theme={theme}>
+        <NavBar defaultTheme={theme} onThemeChange={(newTheme) => setTheme(newTheme)} />
+        <Routes>
+          <Route path={ROUTES.HOME_PAGE.route} element={<Home />} />
+          <Route path={ROUTES.MANAGE_TASKS.route} element={<ManageTasks />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
