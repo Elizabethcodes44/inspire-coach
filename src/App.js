@@ -5,9 +5,7 @@ import NavBar from './components/NavBar';
 import { ROUTES, THEME_OPTIONS } from './global';
 import useLocalStorage from 'use-local-storage';
 
-function Home() {
-  return <h2>Home Page</h2>;
-}
+import Home from './pages/Home';
 
 function ManageTasks() {
   return <h2>Manage Tasks Page</h2>;
