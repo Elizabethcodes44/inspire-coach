@@ -6,10 +6,7 @@ import { ROUTES, THEME_OPTIONS } from './global';
 import useLocalStorage from 'use-local-storage';
 
 import Home from './pages/Home';
-
-function ManageTasks() {
-  return <h2>Manage Tasks Page</h2>;
-}
+import ManageTasks from './pages/ManageTasks';
 
 function App() {
   const defaultDark = window.matchMedia(`(prefers-color-scheme: ${THEME_OPTIONS.DARK})`).matches;
