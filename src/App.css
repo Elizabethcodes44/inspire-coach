@@ -1,6 +1,9 @@
 :root {
   --white: #F5F5F5;
   --black: #121212;
+  --purple: rgb(62,14,105);
+  --pink: rgb(190,46,134);
+  --green: rgb(19,228,159);
 
   --background-color: var(--white);
   --primary-text-color: var(--black);
