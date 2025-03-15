@@ -1,0 +1,58 @@
+#user-container-bg {
+    margin: 2% 10%;
+    padding: 15px;
+    border-radius: 25px;
+    box-shadow: inset 0 0 2px 2px transparent, inset 0 0 3px 2px var(--primary-text-color);
+    background: linear-gradient(90deg, var(--purple) 0%, var(--pink) 42%, var(--green) 100%);
+}
+
+#user-container {
+    background-color: var(--background-color);
+    border-radius: 20px;
+    color: var(--primary-text-color);
+    margin: 1.5%;
+    padding: 40px 70px;
+    line-height: 1.5;
+}
+
+#user-title {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+#user-app-logo {
+    width: 12%;
+    margin: 10px;
+}
+
+#user-description {
+    text-align: left;  
+    font-size: 2rem;
+    margin: 0;
+}
+
+#user-features-list {
+    text-align: left;   
+    font-size: 2rem;
+}
+
+#user-features-list p {
+    width: 100%;
+    margin: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.user-feature-list-item-icon {
+    margin-right: 20px;
+    font-size: 3rem;
+    background-color: var(--white);
+    border-radius: 50%;
+    padding: 15px;
+}
+
+.user-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}

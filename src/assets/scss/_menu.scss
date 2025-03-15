@@ -147,6 +147,7 @@ body.react-one-page .react-menus > li > a {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        background-color: var(--background-color);
     }
 }
 
@@ -221,7 +222,7 @@ body.react-one-page .react-menus > li > a {
 
     .react-menus  li {
         position: relative;
-        background: #fff;
+        background: var(--background-color);
     }  
     .react-menus li a:hover {
         background: #f5f3f3 !important;

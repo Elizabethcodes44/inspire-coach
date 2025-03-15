@@ -8,10 +8,16 @@ import useLocalStorage from "use-local-storage";
 import LoadTop from "./components/ScrollTop/LoadTop";
 import Preloader from "./components/Preloader";
 
+//userHome Routes
 import Home from "./pages/Home";
 import ManageTasks from "./pages/ManageTasks";
 import ViewTask from "./pages/ViewTask";
 
+//Coach Routes
+import Coach from "./pages/coach/Coach";
+
+
+//auth toutes
 import AdminProtectedRoute from "./app/AdminProctectedRoute";
 import ProtectedRoute from "./app/ProtectedRoute";
 import AdminLogin from "./pages/authentication/adminLogin";
@@ -77,6 +83,7 @@ function AppContent() {
         />
         <Route path="/" exact element={<Home />} />
         <Route path="/userHome" exact element={<Home />} />
+        <Route path="/coach" element={<Coach />} />
         <Route path="/otp" element={<OTP />} />
 
         <Route path="/forgot-password" element={<ForgotPassword />} />

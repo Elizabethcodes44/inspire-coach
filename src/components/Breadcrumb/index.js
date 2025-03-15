@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import breadcrumbsImg from '../../assets/images/breadcrumbs/01.jpg'
+import breadcrumbsImg from '../../assets/images/breadcrumbs/01.png'
 
 const Breadcrumb = (props) => {
 	const { pageTitle } = props;

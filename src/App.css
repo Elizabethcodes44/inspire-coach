@@ -3,10 +3,11 @@
   --black: #121212;
   --purple: rgb(62,14,105);
   --pink: rgb(190,46,134);
-  --green: rgb(19,228,159);
+  --green: #13e49f;
 
   --background-color: var(--white);
   --primary-text-color: var(--black);
+  --button-bg-color: var(--green);
 
   --status-on-track: #19b719;
   --status-behind: #bda30f;
@@ -20,6 +21,9 @@
 
   --colored-text-bg: transparent;
   --colored-text-border-radius: 0;
+  --gradient-box-shadow: 5px 5px 10px #070707,
+  -5px -5px 10px #1d1d1d;
+
   --element-hover-bg: rgba(176, 176, 176, 0.25);
 
   --progress-bar-default-width: 100%;
@@ -30,8 +34,13 @@
   --background-color: var(--black);
   --primary-text-color: var(--white);
 
+  --button-bg-color: var(--purple);
+
   --colored-text-bg: var(--white);
   --colored-text-border-radius: 15px;
+
+  --gradient-box-shadow: 5px 5px 10px #626262,
+  -5px -5px 10px #ffffff;
   --element-hover-bg: rgba(255, 255, 255, 0.25);
 }
 
@@ -48,6 +57,9 @@ body, html {
   padding-bottom: 30px;
 }
 
+.box-shadow-gradient {
+  box-shadow: var(--gradient-box-shadow);
+}
 .tasks-overview-item-date {
   font-size: var(--secondary-font-size);
   margin: 0;
