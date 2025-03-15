@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './TasksOverviewItem.css';
 import ProgressBar from './ProgressBar';
 import CustomDate from './CustomDate';
-import { ICONS } from '../global';
+import { ICONS, getEstimatedTimeCompleted, getTotalEstimatedTime, getTaskCompletionPercentage } from '../global';
 
 function TasksOverviewItem({ idx, task }) {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ function TasksOverviewItem({ idx, task }) {
               <CustomDate classes='tasks-overview-item-date' label='Last Updated' date={task.lastUpdatedDate} />
               <CustomDate classes='tasks-overview-item-date' label='Due' date={task.dueDate} />
             </div>
-            <ProgressBar value={task.percentageComplete} width='100%' />
+            <ProgressBar value={getTaskCompletionPercentage(getEstimatedTimeCompleted(task), getTotalEstimatedTime(task))} width='100%' />
           </div>
         </div>
     </div>

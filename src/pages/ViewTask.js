@@ -1,35 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useLocation} from 'react-router-dom';
 import './ViewTask.css';
 import TextToSpeech from '../components/TextToSpeech';
 import CustomDate from '../components/CustomDate';
-import { ICONS } from '../global';
+import { ICONS, getNumSteps, getNumStepsCompleted, getEstimatedTimeCompleted, getTotalEstimatedTime, getTaskCompletionPercentage } from '../global';
 import ProgressBar from '../components/ProgressBar';
 import TaskStep from '../components/TaskStep';
 
 function ViewTask() {
     const location = useLocation();
     const [task, setTask] = useState(JSON.parse(location.state.task));
+    const [totalNumSteps, setTotalNumSteps] = useState(getNumSteps(task));
+    const [numStepsCompleted, setNumStepsCompleted] = useState(getNumStepsCompleted(task));
+    const [estimatedTimeCompleted, setEstimatedTimeCompleted] = useState(getEstimatedTimeCompleted(task));
+    const [totalEstimatedTime, setTotalEstimatedTime] = useState(getTotalEstimatedTime(task));
+    const [taskCompletionPercentage, setTaskCompletionPercentage] = useState(getTaskCompletionPercentage(estimatedTimeCompleted, totalEstimatedTime));
 
-    const getNumSteps = () => {
-        return Object.keys(task.steps).length;
-    }
-
-    const getNumStepsCompleted = () => {
-        let numStepsCompleted = 0;
-
-        Object.entries(task.steps).forEach(([_, step]) => {
-            if (step.isCompleted) {
-                numStepsCompleted++;
-            }
-        });
-
-        return numStepsCompleted;
-    }
-
-    const getTaskCompletionPercentage = () => {
-        return Math.round((getNumStepsCompleted() / getNumSteps()) * 100);
-    }
+    useEffect(() => {
+        setTotalNumSteps(getNumSteps(task));
+        setNumStepsCompleted(getNumStepsCompleted(task));
+        setEstimatedTimeCompleted(getEstimatedTimeCompleted(task));
+        setTotalEstimatedTime(getTotalEstimatedTime(task));
+        setTaskCompletionPercentage(getTaskCompletionPercentage(estimatedTimeCompleted, totalEstimatedTime));
+    }, [task]);
 
     return (
         <div className='view-task-page-container'>
@@ -48,8 +41,8 @@ function ViewTask() {
                 </div>
                 <div className='view-task-steps-container'>
                     <div className='view-task-steps-header'>
-                        <h3 className='view-task-steps-title'><span className='view-task-label'>Steps</span> ({getNumStepsCompleted()} of {getNumSteps()} completed)</h3>
-                        <ProgressBar value={getTaskCompletionPercentage()} />
+                        <h3 className='view-task-steps-title'><span className='view-task-label'>Steps</span> ({numStepsCompleted} of {totalNumSteps} completed)</h3>
+                        <ProgressBar value={taskCompletionPercentage} />
                     </div>
                     <div className='view-task-steps'>
                         {Object.entries(task.steps).map(([num, step]) => (
