@@ -10,6 +10,7 @@ import Preloader from "./components/Preloader";
 
 import Home from "./pages/Home";
 import ManageTasks from "./pages/ManageTasks";
+import ViewTask from "./pages/ViewTask";
 
 import AdminProtectedRoute from "./app/AdminProctectedRoute";
 import ProtectedRoute from "./app/ProtectedRoute";
@@ -56,6 +57,7 @@ function AppContent() {
       <Routes>
         <Route path={ROUTES.HOME_PAGE.route} element={<Home />} />
         <Route path={ROUTES.MANAGE_TASKS.route} element={<ManageTasks />} />
+        <Route path={ROUTES.VIEW_TASK.route} element={<ViewTask />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
