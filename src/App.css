@@ -7,11 +7,29 @@
 
   --background-color: var(--white);
   --primary-text-color: var(--black);
+
+  --status-on-track: #19b719;
+  --status-behind: #bda30f;
+  --status-due-soon: #d71e1e;
+  --status-overdue: #8B0000;
+
+  --default-font-size: 1.5rem;
+  --secondary-font-size: calc(var(--default-font-size) * 0.9);
+
+  --colored-text-bg: transparent;
+  --colored-text-border-radius: 0;
 }
 
 [data-theme='dark'] {
   --background-color: var(--black);
   --primary-text-color: var(--white);
+
+  --colored-text-bg: var(--white);
+  --colored-text-border-radius: 15px;
+}
+
+body, html {
+  height: 100%;
 }
 
 .App {
@@ -19,6 +37,7 @@
   font-family: Arial, Helvetica, sans-serif;
   background-color: var(--background-color);
   color: var(--primary-text-color);
-  height: 100vh;
+  height: 100%;
+  padding-bottom: 30px;
 }
 
