@@ -16,8 +16,14 @@
   --default-font-size: 1.75rem;
   --secondary-font-size: calc(var(--default-font-size) * 0.9);
 
+  --default-icon-size: 2.5rem;
+
   --colored-text-bg: transparent;
   --colored-text-border-radius: 0;
+  --element-hover-bg: rgba(176, 176, 176, 0.25);
+
+  --progress-bar-default-width: 100%;
+  --progress-bar-secondary-width: 100%;
 }
 
 [data-theme='dark'] {
@@ -26,6 +32,7 @@
 
   --colored-text-bg: var(--white);
   --colored-text-border-radius: 15px;
+  --element-hover-bg: rgba(255, 255, 255, 0.25);
 }
 
 body, html {
@@ -39,5 +46,11 @@ body, html {
   color: var(--primary-text-color);
   height: 100%;
   padding-bottom: 30px;
+}
+
+.tasks-overview-item-date {
+  font-size: var(--secondary-font-size);
+  margin: 0;
+  margin-right: 50px;
 }
 

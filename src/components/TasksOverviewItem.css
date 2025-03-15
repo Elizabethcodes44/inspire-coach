@@ -3,6 +3,12 @@
     margin: 20px 0;
 }
 
+.tasks-overview-item-container:hover {
+    cursor: pointer;
+    background-color: var(--element-hover-bg);
+    border-radius: 20px;
+}
+
 .tasks-overview-item-status-icon {
     display: flex;
     flex-direction: column;
@@ -25,10 +31,4 @@
 .tasks-overview-item-dates {
     display: flex;
     justify-content: space-around;
-}
-
-.tasks-overview-item-date {
-    font-size: var(--secondary-font-size);
-    margin: 0;
-    margin-right: 50px;
 }
