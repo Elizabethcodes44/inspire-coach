@@ -606,7 +606,7 @@ ul {
 ****************************/
 
 .react-header {
-    background: $whiteColor;
+    background: var(--background-color);
     position: relative;
     z-index: 9999;
 
