@@ -8,7 +8,7 @@ import { ROUTES, THEME_OPTIONS } from "../../global";
 import useLocalStorage from "use-local-storage";
 
 
-import Logo from '../../assets/images/logos/ffsd-logo.png';
+import Logo from '../../assets/images/logos/inspire-coach-logo.png';
 
 
 const CoachLogin = () => {
@@ -34,7 +34,7 @@ const CoachLogin = () => {
             <div class="react-wrapper">
                 <div class="react-wrapper-inner">
                     <Breadcrumb
-                        pageTitle="Login"
+                        pageTitle="Coach Login"
                     />
 
                     <CoachLoginMain />

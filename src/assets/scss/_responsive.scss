@@ -563,8 +563,8 @@
 	    margin: 15px auto;
 	}
 	.menu-toggle #menu-btn{
-		background: #EC3237;
-		border-color: #EC3237;
+		background: var(--button-bg-color);
+		border-color: var(--gradient-color);
 	}
 	.react-header.react-inner-header .react-menus > li > a, 
 	.react-header.react-inner-header .react-login svg, 
@@ -676,6 +676,7 @@
 	    display: flex;
 	    align-items: center;
 	    justify-content: space-between;
+		background: var(--background-color);
 	}
 	.react-menus li ul.sub-menu li a {
 	    padding: 12px 40px 12px 50px;
