@@ -8,6 +8,7 @@
 #manage-tasks-search-bar-prompt {
     margin-right: 10px;
     font-weight: bold;
+    font-size: var(--default-font-size);
 }
 
 div:has(> #manage-tasks-search-bar) {
@@ -21,6 +22,7 @@ div:has(> #manage-tasks-search-bar) {
     width: 60vw;
     color: var(--primary-text-color);
     outline: none;
+    font-size: var(--default-font-size);
 }
 
 #manage-tasks-search-button {
@@ -30,6 +32,7 @@ div:has(> #manage-tasks-search-bar) {
     padding: 10px 20px;
     font-size: 2rem;
     border-radius: 10px;
+    font-size: var(--default-font-size);
 }
 
 .search-bar-speech-to-text-icon {

@@ -34,7 +34,8 @@
 }
 
 .nav-bar-link:hover, .nav-link-active {
-    text-decoration: underline;
+    text-decoration: underline !important;
+    color: var(--primary-text-color) !important;
 }
 
 #nav-bar-profile-container {

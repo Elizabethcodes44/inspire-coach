@@ -13,7 +13,7 @@
   --status-due-soon: #d71e1e;
   --status-overdue: #8B0000;
 
-  --default-font-size: 1.5rem;
+  --default-font-size: 1.75rem;
   --secondary-font-size: calc(var(--default-font-size) * 0.9);
 
   --colored-text-bg: transparent;
@@ -33,7 +33,7 @@ body, html {
 }
 
 .App {
-  /* text-align: center; */
+  text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   background-color: var(--background-color);
   color: var(--primary-text-color);
