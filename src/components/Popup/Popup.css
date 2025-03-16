@@ -1,0 +1,76 @@
+/* Popup Container */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Popup Box */
+.popup-box {
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+}
+
+/* Success Style */
+.popup-success {
+    border-left: 5px solid #4caf50; /* Green border for success */
+}
+
+/* Error Style */
+.popup-error {
+    border-left: 5px solid #f44336; /* Red border for error */
+}
+
+/* Message Text */
+.popup-message {
+    font-size: 16px;
+    color: #333;
+    margin: 20px 0;
+}
+
+/* Close Button */
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.popup-close:hover {
+    color: #000;
+}
+
+/* Action Button */
+.popup-action-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.popup-action-button:hover {
+    background-color: #0056b3;
+}

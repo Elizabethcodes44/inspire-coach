@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleCheck, faCircleExclamation, faClock } from '@fortawesome/free-solid-svg-icons';
+
 export const APP_NAME = 'InspireCoach';
 
 export const ROUTES = {
@@ -11,9 +14,96 @@ export const ROUTES = {
         label: 'Manage Tasks', 
         route: '/manage-tasks'
     },
+    VIEW_TASK: { 
+        id: 'view-task',
+        label: 'View Task',
+        route: '/view-task/:id'
+    },
 };
 
 export const THEME_OPTIONS = {
     DARK: 'dark',
     LIGHT: 'light'
+}
+
+export const ICONS = {
+    faCircleCheck: <FontAwesomeIcon icon={faCircleCheck} />,
+    faCircleExclamation: <FontAwesomeIcon icon={faCircleExclamation} />,
+    faClock: <FontAwesomeIcon icon={faClock} />
+}
+
+export const STATUSES = {
+    ON_TRACK: {
+        id: 'on-track',
+        label: 'On Track',
+        icon: 'faCircleCheck',
+        color: 'var(--status-on-track)'
+    },
+    BEHIND: {
+        id: 'behind',
+        label: 'Behind',
+        icon: 'faCircleExclamation',
+        color: 'var(--status-behind)'
+    },
+    DUE_SOON: {
+        id: 'due-soon',
+        label: 'Due Soon',
+        icon: 'faClock',
+        color: 'var(--status-due-soon)'
+    },
+    OVERDUE: {
+        id: 'overdue',
+        label: 'Overdue',
+        icon: 'faCircleExclamation',
+        color: 'var(--status-overdue)'
+    }
+}
+
+export const getNumSteps = (task) => {
+    return Object.keys(task.steps).length;
+}
+
+export const getNumStepsCompleted = (task) => {
+    let numStepsCompleted = 0;
+
+    Object.entries(task.steps).forEach(([_, step]) => {
+        if (step.isCompleted) {
+            numStepsCompleted++;
+        }
+    });
+
+    return numStepsCompleted;
+}
+
+export const getEstimatedTimeCompleted = (task) => {
+    let estimatedTimeCompleted = 0;
+
+    Object.entries(task.steps).forEach(([_, step]) => {
+        if (step.isCompleted) {
+            estimatedTimeCompleted += step.estimatedCompletionTime;
+        }
+    });
+
+    return estimatedTimeCompleted;
+}
+
+export const getTotalEstimatedTime = (task) => {
+    let totalEstimatedTime = 0;
+
+    Object.entries(task.steps).forEach(([_, step]) => {
+        totalEstimatedTime += step.estimatedCompletionTime;
+    });
+
+    return totalEstimatedTime;
+}
+
+export const getTaskCompletionPercentage = (completedTime, totalTime) => {
+    // completion percentage is based on estimated time to complete all tasks (not number of steps)
+    return Math.round((completedTime / totalTime) * 100);
+}
+
+export const convertTime = (timeInMins) => {
+    const hours = Math.floor(timeInMins / 60);
+    const mins = timeInMins % 60;
+    return `${hours > 0 ? hours + ` hour${hours > 1 ? 's' : ''}` : ''}` + ' ' + `${mins > 0 ? mins + ` minute${mins > 1 ? 's' : ''}` : ''}`;
 }

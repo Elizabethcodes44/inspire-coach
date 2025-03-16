@@ -1,0 +1,62 @@
+.view-task-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 50px;
+    height: 100%;
+}
+
+.view-task-title-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.view-task-title {
+    margin-right: 10px;
+}
+
+.view-task-label {
+    font-weight: bold;
+}
+
+.view-task-details-container {
+    margin-left: 100px;
+}
+
+.view-task-status-container {
+    display: flex;
+    align-items: center;
+}
+
+.view-task-status, .view-task-date {
+    font-size: var(--default-font-size);
+    margin: 0;
+    margin-right: 50px;
+}
+
+.view-task-status {
+    padding: 10px;
+}
+
+.view-task-steps-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.view-task-steps-header {
+    display: flex;
+    align-items: center;
+}
+
+.view-task-steps-title {
+    margin: 0;
+    margin-right: 20px;
+    font-size: var(--default-font-size);
+}
+
+.view-task-steps {
+    display: flex;
+    flex-direction: column;
+}
