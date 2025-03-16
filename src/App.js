@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
+import CoachNavBar from "./components/Coach/CoachNavbar";
 import { ROUTES, THEME_OPTIONS } from "./global";
+import {ROUTES as COACHROUTES } from "./coachGlobal";
+
 import useLocalStorage from "use-local-storage";
 
 import LoadTop from "./components/ScrollTop/LoadTop";
@@ -15,6 +18,7 @@ import ViewTask from "./pages/ViewTask";
 
 //Coach Routes
 import Coach from "./pages/coach/Coach";
+import ManageUsers from "./pages/coach/ManageUsers";
 
 
 //auth toutes
@@ -46,9 +50,15 @@ function AppContent() {
     }, 500);
   }, []);
 
-  const noNavBarRoutes = ["/login", "/forgot-password", "/otp", "/adminlogin", "/signup", "/coachlogin"];
+  const noNavBarRoutes = ["/login", "/forgot-password", "/otp", "/adminlogin", "/signup", "/coachlogin", "/coach"];
+  const noCoachNavBarRoutes = ["", "/", "/login", "/forgot-password", "/otp", "/adminlogin", "/signup", "/coachlogin", "/userhome", "/manage-tasks", "/view-task", "/admindashboard", "/userdashboard"];
 
   const normalizePath = (path) => path.toLowerCase().replace(/\/$/, "");
+
+  const isNoCoachNavBarRoute = (path) => {
+    const normalizedPath = normalizePath(path);
+    return noCoachNavBarRoutes.includes(normalizedPath) || /^\/view-task\/\d+$/.test(normalizedPath);
+  };
 
   return (
     <div className="App" data-theme={theme}>
@@ -60,9 +70,17 @@ function AppContent() {
           onThemeChange={(newTheme) => setTheme(newTheme)}
         />
       )}
+      {!isNoCoachNavBarRoute(location.pathname) && (
+        <CoachNavBar
+          defaultTheme={theme}
+          onThemeChange={(newTheme) => setTheme(newTheme)}
+        />
+      )}
       <Routes>
         <Route path={ROUTES.HOME_PAGE.route} element={<Home />} />
         <Route path={ROUTES.MANAGE_TASKS.route} element={<ManageTasks />} />
+        <Route path={COACHROUTES.MANAGE_USERS.route} element={<ManageUsers />} />
+
         <Route path={ROUTES.VIEW_TASK.route} element={<ViewTask />} />
 
         <Route path="/login" element={<Login />} />

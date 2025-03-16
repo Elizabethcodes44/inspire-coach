@@ -97,7 +97,7 @@ const LoginMain = () => {
                         type: "error",
                         isVisible: true,
                         buttonLabel: "Retry",
-                        buttonRoute: "/login",
+                        buttonRxoute: "/login",
                     });
                 }
             } catch (error) {

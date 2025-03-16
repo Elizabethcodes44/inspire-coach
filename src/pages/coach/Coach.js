@@ -1,59 +1,69 @@
-import React from "react";
-import AppLogo from "../../assets/inspire-coach-logo.png";
-import { APP_NAME } from "../../global";
-import "./Coach.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faListCheck,
-  faCalendarCheck,
-  faCommentDots,
-} from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useState } from 'react';
+import UserCard from '../../components/Coach/UserCard';
+import './Coach.css';
 
 function Coach() {
+  const [users, setUsers] = useState([]);
+//   useEffect(() => {
+//     // Fetch user details from the backend
+//     fetch('/api/users')
+//       .then(response => response.json())
+//       .then(data => setUsers(data))
+//       .catch(error => console.error('Error fetching users:', error));
+//   }, []);
+
+  useEffect(() => {
+    // Use dummy data for users
+    const dummyUsers = [
+      {
+        id: 1,
+        name: 'John Doe',
+        totalTasks: 7,
+        overdueTasks: 1,
+        dueSoonTasks: 2,
+        behindTasks: 5,
+        onTrackTasks: 1
+      },
+      {
+        id: 2,
+        name: 'Jane Smith',
+        totalTasks: 5,
+        overdueTasks: 2,
+        dueSoonTasks: 1,
+        behindTasks: 5,
+        onTrackTasks: 1
+      },
+      {
+        id: 3,
+        name: 'Alice Johnson',
+        totalTasks: 10,
+        overdueTasks: 2,
+        dueSoonTasks: 3,
+        behindTasks: 5,
+        onTrackTasks: 1
+      }
+    ];
+    setUsers(dummyUsers);
+  }, []);
+
   return (
-    <div id="user-container-bg">
-      <div id="user-container">
-        <div className="user-header">
-          <img
-            id="user-app-logo"
-            src={AppLogo}
-            alt={`${APP_NAME} logo: pink ribbon with green checkmark`}
+    <div className="coach-container">
+      <div className="filters">
+        {/* Add filter options here */}
+        <h3>Filters</h3>
+      </div>
+      <div className="user-card-container">
+        {users.map(user => (
+          <UserCard
+            key={user.id}
+            name={user.name}
+            totalTasks={user.totalTasks}
+            overdueTasks={user.overdueTasks}
+            dueSoonTasks={user.dueSoonTasks}
+            behindTasks={user.behindTasks}
+            onTrackTasks={user.onTrackTasks}
           />
-          <h1 id="user-title">John Doe</h1>
-          
-        </div>
-        <div className="user-header">
-          
-            <p id="user-description">Total Tasks: 7</p>
-          </div>
-          <div className="user-header">
-        <div id="user-features-list">
-          <p>
-            <FontAwesomeIcon
-              className="user-feature-list-item-icon"
-              icon={faListCheck}
-              style={{ color: "var(--purple)" }}
-            />
-            Input your tasks and AI will generate the steps for you
-          </p>
-          <p>
-            <FontAwesomeIcon
-              className="user-feature-list-item-icon"
-              icon={faCalendarCheck}
-              style={{ color: "var(--pink)" }}
-            />
-            Track your task due dates and completion status
-          </p>
-          <p>
-            <FontAwesomeIcon
-              className="user-feature-list-item-icon"
-              icon={faCommentDots}
-              style={{ color: "var(--green)" }}
-            />
-            Connect with a coach to receive guidance
-          </p>
-        </div>
-        </div>
+        ))}
       </div>
     </div>
   );
