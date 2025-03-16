@@ -58,3 +58,52 @@ export const STATUSES = {
         color: 'var(--status-overdue)'
     }
 }
+
+export const getNumSteps = (task) => {
+    return Object.keys(task.steps).length;
+}
+
+export const getNumStepsCompleted = (task) => {
+    let numStepsCompleted = 0;
+
+    Object.entries(task.steps).forEach(([_, step]) => {
+        if (step.isCompleted) {
+            numStepsCompleted++;
+        }
+    });
+
+    return numStepsCompleted;
+}
+
+export const getEstimatedTimeCompleted = (task) => {
+    let estimatedTimeCompleted = 0;
+
+    Object.entries(task.steps).forEach(([_, step]) => {
+        if (step.isCompleted) {
+            estimatedTimeCompleted += step.estimatedCompletionTime;
+        }
+    });
+
+    return estimatedTimeCompleted;
+}
+
+export const getTotalEstimatedTime = (task) => {
+    let totalEstimatedTime = 0;
+
+    Object.entries(task.steps).forEach(([_, step]) => {
+        totalEstimatedTime += step.estimatedCompletionTime;
+    });
+
+    return totalEstimatedTime;
+}
+
+export const getTaskCompletionPercentage = (completedTime, totalTime) => {
+    // completion percentage is based on estimated time to complete all tasks (not number of steps)
+    return Math.round((completedTime / totalTime) * 100);
+}
+
+export const convertTime = (timeInMins) => {
+    const hours = Math.floor(timeInMins / 60);
+    const mins = timeInMins % 60;
+    return `${hours > 0 ? hours + ` hour${hours > 1 ? 's' : ''}` : ''}` + ' ' + `${mins > 0 ? mins + ` minute${mins > 1 ? 's' : ''}` : ''}`;
+}

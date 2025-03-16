@@ -13,26 +13,25 @@ const PLACEHOLDER_TASKS = [
         lastUpdatedDate: '2021-08-20',
         dueDate: '2021-08-15',
         status: STATUSES.OVERDUE,
-        percentageComplete: 66,
         steps: {
             1: {
                 title: 'Lorem ipsum this is step 1',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 1',
-                estimatedCompletionTime: '20 minutes',
+                estimatedCompletionTime: 20,
                 isCompleted: true,
                 linkToImage: 'https://freerangestock.com/sample/180605/cooking-ingredients-arranged-on-a-wooden-board..jpg'
             },
             2: {
                 title: 'Lorem ipsum this is step 2',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 2',
-                estimatedCompletionTime: '1 hour',
+                estimatedCompletionTime: 60,
                 isCompleted: true,
                 linkToImage: 'https://freerangestock.com/sample/69394/person-in-yellow-gloves-cooking-food-in-a-wok.jpg'
             },
             3: {
                 title: 'Lorem ipsum this is step 3',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 3',
-                estimatedCompletionTime: '30 minutes',
+                estimatedCompletionTime: 30,
                 isCompleted: false,
                 linkToImage: 'https://cdn.stocksnap.io/img-thumbs/960w/bread-serve_08XLVPG7EY.jpg'
             }
@@ -45,19 +44,18 @@ const PLACEHOLDER_TASKS = [
         lastUpdatedDate: '2021-08-25',
         dueDate: '2021-09-01',
         status: STATUSES.DUE_SOON,
-        percentageComplete: 50,
         steps: {
             1: {
                 title: 'Lorem ipsum this is step 1',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 1',
-                estimatedCompletionTime: '2 days',
+                estimatedCompletionTime: 600,
                 isCompleted: true,
                 linkToImage: 'https://live.staticflickr.com/3298/3658147194_14bd5e4567_b.jpg'
             },
             2: {
                 title: 'Lorem ipsum this is step 2',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 2',
-                estimatedCompletionTime: '4 weeks',
+                estimatedCompletionTime: 5400,
                 isCompleted: false,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/8/85/Young_Man_in_a_Interview.jpg'
             }
@@ -70,33 +68,32 @@ const PLACEHOLDER_TASKS = [
         lastUpdatedDate: '2021-08-25',
         dueDate: '2021-09-01',
         status: STATUSES.BEHIND,
-        percentageComplete: 25,
         steps: {
             1: {
                 title: 'Lorem ipsum this is step 1',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 1',
-                estimatedCompletionTime: '3 hours',
+                estimatedCompletionTime: 180,
                 isCompleted: true,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             },
             2: {
                 title: 'Lorem ipsum this is step 2',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 2',
-                estimatedCompletionTime: '1 hour',
+                estimatedCompletionTime: 60,
                 isCompleted: false,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             },
             3: {
                 title: 'Lorem ipsum this is step 3',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 3',
-                estimatedCompletionTime: '10 days',
+                estimatedCompletionTime: 1800,
                 isCompleted: false,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             },
             4: {
                 title: 'Lorem ipsum this is step 4',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 4',
-                estimatedCompletionTime: '2.5 hours',
+                estimatedCompletionTime: 150,
                 isCompleted: false,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             }
@@ -109,33 +106,32 @@ const PLACEHOLDER_TASKS = [
         lastUpdatedDate: '2021-08-25',
         dueDate: '2021-09-01',
         status: STATUSES.ON_TRACK,
-        percentageComplete: 50,
         steps: {
             1: {
                 title: 'Lorem ipsum this is step 1',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 1',
-                estimatedCompletionTime: '3 hours',
+                estimatedCompletionTime: 180,
                 isCompleted: true,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             },
             2: {
                 title: 'Lorem ipsum this is step 2',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 2',
-                estimatedCompletionTime: '1 hour',
+                estimatedCompletionTime: 60,
                 isCompleted: true,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             },
             3: {
                 title: 'Lorem ipsum this is step 3',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 3',
-                estimatedCompletionTime: '10 days',
+                estimatedCompletionTime: 5400,
                 isCompleted: false,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             },
             4: {
                 title: 'Lorem ipsum this is step 4',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 4',
-                estimatedCompletionTime: '2.5 hours',
+                estimatedCompletionTime: 150,
                 isCompleted: false,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             }

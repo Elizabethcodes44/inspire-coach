@@ -4,6 +4,7 @@ import { Checkbox } from '@mui/material';
 import TextToSpeech from './TextToSpeech';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquare } from '@fortawesome/free-regular-svg-icons';
+import { convertTime } from '../global';
 
 function TaskStep({ num, step }) {
     const [isStepCompleted, setIsStepCompleted] = useState(step.isCompleted);
@@ -26,9 +27,9 @@ function TaskStep({ num, step }) {
                     icon={<FontAwesomeIcon icon={faSquare} fontSize={30} style={{ color: 'var(--primary-text-color', margin: '0 8px' }} />}
                 />
                 <p className='task-step-num'>{num}. </p>
-                <TextToSpeech text={`Step ${num}, ${step.title}, estimated completion time is ${step.estimatedCompletionTime}`} />
+                <TextToSpeech text={`Step ${num}, ${step.title}, estimated completion time is ${convertTime(step.estimatedCompletionTime)}`} />
                 <p className='task-step-title'>{step.title}</p>
-                <p className='task-step-estimated-completion'>(estimated completion time: {step.estimatedCompletionTime})</p>
+                <p className='task-step-estimated-completion'>(estimated completion time: {convertTime(step.estimatedCompletionTime)})</p>
             </div>
             <div className='task-step-description-container'>
                 <div style={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
