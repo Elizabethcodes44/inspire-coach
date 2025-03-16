@@ -3,16 +3,12 @@ import AppLogo from "../../assets/inspire-coach-logo.png";
 import { APP_NAME } from "../../coachGlobal";
 import "./UserCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faListCheck,
-  faCalendarCheck,
-  faCommentDots,
-} from "@fortawesome/free-solid-svg-icons";
 import { ICONS, STATUSES } from "../../coachGlobal";
-import { Checkbox, FormControlLabel } from '@mui/material';
+import { Button } from '@mui/material';
+import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
 
 
-function UserCard({ name, totalTasks, overdueTasks, dueSoonTasks, behindTasks, onTrackTasks }) {
+function UserCard({ name, totalTasks, overdueTasks, dueSoonTasks, behindTasks, onTrackTasks, lastActive, view, contact }) {
   return (
     <div id="user-container-bg">
       <div id="user-container">
@@ -25,7 +21,7 @@ function UserCard({ name, totalTasks, overdueTasks, dueSoonTasks, behindTasks, o
           <h1 id="user-title">{name}</h1>
           
         </div>
-        <div className="user-header">
+        <div className="">
           
             <p id="user-description">Total Tasks: {totalTasks}</p>
           </div>
@@ -83,6 +79,19 @@ function UserCard({ name, totalTasks, overdueTasks, dueSoonTasks, behindTasks, o
             
             {onTrackTasks} {STATUSES.ON_TRACK.label}
           </p>
+
+        <div className="cta-section">
+        <p>Last Active: {lastActive} </p>
+         
+         <Button id='view' variant="contained" aria-label='Button to execute view user'>{view}</Button>
+         <Button id='contact' variant="contained" aria-label='Button to execute contact use'>
+           <FontAwesomeIcon 
+                                 className='' 
+                                 icon={faCommentDots} 
+                                 style={{ color: 'var(--green)' }}
+                             /> {contact}</Button>
+
+         </div>
         </div>
         </div>
       </div>

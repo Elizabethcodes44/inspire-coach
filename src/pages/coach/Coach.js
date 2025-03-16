@@ -22,7 +22,8 @@ function Coach() {
         overdueTasks: 1,
         dueSoonTasks: 2,
         behindTasks: 5,
-        onTrackTasks: 1
+        onTrackTasks: 1,
+        lastActive: "March 1, 2025"
       },
       {
         id: 2,
@@ -31,7 +32,8 @@ function Coach() {
         overdueTasks: 2,
         dueSoonTasks: 1,
         behindTasks: 5,
-        onTrackTasks: 1
+        onTrackTasks: 1,
+        lastActive: "March 4, 2025"
       },
       {
         id: 3,
@@ -40,7 +42,8 @@ function Coach() {
         overdueTasks: 2,
         dueSoonTasks: 3,
         behindTasks: 5,
-        onTrackTasks: 1
+        onTrackTasks: 1,
+        lastActive: "March 13, 2025"
       }
     ];
     setUsers(dummyUsers);
@@ -62,6 +65,9 @@ function Coach() {
             dueSoonTasks={user.dueSoonTasks}
             behindTasks={user.behindTasks}
             onTrackTasks={user.onTrackTasks}
+            lastActive={user.lastActive}
+            view={"view"}
+            contact={"contact"}
           />
         ))}
       </div>
