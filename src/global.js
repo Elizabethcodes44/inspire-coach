@@ -9,6 +9,16 @@ export const ROUTES = {
         label: 'Home', 
         route: '/'
     },
+    SIGN_UP: { 
+        id: 'sign-up',
+        label: 'Sign Up', 
+        route: '/sign-up'
+    },
+    LOGIN: { 
+        id: 'login',
+        label: 'Login', 
+        route: '/login'
+    },
     MANAGE_TASKS: { 
         id: 'manage-tasks',
         label: 'Manage Tasks', 
@@ -19,25 +29,20 @@ export const ROUTES = {
         label: 'View Task',
         route: '/view-task/:id'
     },
-    COACH_PAGE: { 
-        id: 'coach-page',
-        label: 'Coach', 
-        route: '/coach'
+    MANAGE_TRAINEES: { 
+        id: 'manage-trainees',
+        label: 'Manage Trainees',
+        route: '/manage-trainees'
     },
-    MANAGE_USERS: { 
-        id: 'manage-users',
-        label: 'Manage Mentees',
-        route: '/manage-user/'
-    },
-    VIEW_USER_TASKS: {
-        id: 'view-user-tasks',
-        label: 'View User Tasks',
-        route: '/coach/view-user-tasks/:userid'
+    VIEW_TRAINEE_TASKS: {
+        id: 'view-trainee-tasks',
+        label: 'View Trainee Tasks',
+        route: '/view-trainee-tasks/:traineeid'
     }
 };
 
-export const USER_TYPES = {
-    student: 'student',
+export const USER_ROLES = {
+    trainee: 'trainee',
     coach: 'coach'
 }
 
