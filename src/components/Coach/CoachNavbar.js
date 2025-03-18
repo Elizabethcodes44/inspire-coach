@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import AppLogo from '../../assets/inspire-coach-logo.png';
 import './CoachNavBar.css';
-import { APP_NAME, ROUTES, THEME_OPTIONS } from '../../coachGlobal';
+import { APP_NAME, ROUTES, THEME_OPTIONS } from '../../global';
 import Switch from "react-switch";  
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon, faBell, faCircleUser } from '@fortawesome/free-solid-svg-icons';

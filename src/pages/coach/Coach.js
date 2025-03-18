@@ -2,8 +2,32 @@ import React, { useEffect, useState } from 'react';
 import UserCard from '../../components/Coach/UserCard';
 import './Coach.css';
 
+// TODO: remove once pulling from DB
+import { PLACEHOLDER_TASKS } from '../../components/TasksOverview';
+const PLACEHOLDER_USER = {
+    id: 1,
+    firstName: 'John',
+    lastName: 'Doe',
+    lastLoginDate: 'Mar 10, 2025'
+}
+const PLACEHOLDER_USERS_TASKS = [
+  {
+    user: PLACEHOLDER_USER,
+    tasks: PLACEHOLDER_TASKS
+  },
+  {
+    user: PLACEHOLDER_USER,
+    tasks: PLACEHOLDER_TASKS
+  },
+  {
+    user: PLACEHOLDER_USER,
+    tasks: PLACEHOLDER_TASKS
+  }
+];
+//////////////
+
 function Coach() {
-  const [users, setUsers] = useState([]);
+  const [usersTasks, setUsersTasks] = useState([]);
 //   useEffect(() => {
 //     // Fetch user details from the backend
 //     fetch('/api/users')
@@ -13,40 +37,8 @@ function Coach() {
 //   }, []);
 
   useEffect(() => {
-    // Use dummy data for users
-    const dummyUsers = [
-      {
-        id: 1,
-        name: 'John Doe',
-        totalTasks: 7,
-        overdueTasks: 1,
-        dueSoonTasks: 2,
-        behindTasks: 5,
-        onTrackTasks: 1,
-        lastActive: "March 1, 2025"
-      },
-      {
-        id: 2,
-        name: 'Jane Smith',
-        totalTasks: 5,
-        overdueTasks: 2,
-        dueSoonTasks: 1,
-        behindTasks: 5,
-        onTrackTasks: 1,
-        lastActive: "March 4, 2025"
-      },
-      {
-        id: 3,
-        name: 'Alice Johnson',
-        totalTasks: 10,
-        overdueTasks: 2,
-        dueSoonTasks: 3,
-        behindTasks: 5,
-        onTrackTasks: 1,
-        lastActive: "March 13, 2025"
-      }
-    ];
-    setUsers(dummyUsers);
+    // TODO: remove and pull from DB
+    setUsersTasks(PLACEHOLDER_USERS_TASKS);
   }, []);
 
   return (
@@ -56,19 +48,8 @@ function Coach() {
         <h3>Filters</h3>
       </div>
       <div className="user-card-container">
-        {users.map(user => (
-          <UserCard
-            key={user.id}
-            name={user.name}
-            totalTasks={user.totalTasks}
-            overdueTasks={user.overdueTasks}
-            dueSoonTasks={user.dueSoonTasks}
-            behindTasks={user.behindTasks}
-            onTrackTasks={user.onTrackTasks}
-            lastActive={user.lastActive}
-            view={"view"}
-            contact={"contact"}
-          />
+        {usersTasks.map(userTasks => (
+          <UserCard key={userTasks.user.id} userTasks={userTasks} />
         ))}
       </div>
     </div>
