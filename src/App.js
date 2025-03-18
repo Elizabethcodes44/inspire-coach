@@ -50,7 +50,7 @@ function AppContent() {
     }, 500);
   }, []);
 
-  const noNavBarRoutes = ["/login", "/forgot-password", "/otp", "/adminlogin", "/signup", "/coachlogin", "/coach"];
+  const noNavBarRoutes = ["/login", "/forgot-password", "/otp", "/adminlogin", "/signup", "/coachlogin", "/coach", "/manage-user"];
   const noCoachNavBarRoutes = ["", "/", "/login", "/forgot-password", "/otp", "/adminlogin", "/signup", "/coachlogin", "/userhome", "/manage-tasks", "/view-task", "/admindashboard", "/userdashboard"];
 
   const normalizePath = (path) => path.toLowerCase().replace(/\/$/, "");
