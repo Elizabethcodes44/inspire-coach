@@ -7,17 +7,6 @@
     border-radius: 25px;
     font-size: 16px;
 }
-#contact{
-    margin-left: 10px;
-    box-shadow: inset 0 0 2px 2px transparent, inset 0 0 3px 2px var(--primary-text-color);
-    background: var(--background-color);
-    padding: 1px 15px;
-    font-size: .5rem;
-    border-radius: 25px;
-    font-size: 16px;
-    color: var(--primary-text-color);
-}
-
 .cta-section {
     
     margin-top: 25px;

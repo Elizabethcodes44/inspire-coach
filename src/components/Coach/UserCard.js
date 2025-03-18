@@ -1,14 +1,20 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import AppLogo from "../../assets/inspire-coach-logo.png";
-import { APP_NAME } from "../../coachGlobal";
+import { APP_NAME, ICONS, STATUSES } from "../../global";
 import "./UserCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ICONS, STATUSES } from "../../coachGlobal";
 import { Button } from '@mui/material';
 import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
+import { getNumTasksWithStatus, getUserFullName } from "../../global";
 
+function UserCard({ userTasks }) {
+  const navigate = useNavigate();
 
-function UserCard({ name, totalTasks, overdueTasks, dueSoonTasks, behindTasks, onTrackTasks, lastActive, view, contact }) {
+  const viewUserTasks = () => {
+    navigate(`/coach/view-user-tasks/${userTasks.user.id}`, { state: { userTasks: JSON.stringify(userTasks) } });
+  }
+
   return (
     <div id="user-container-bg">
       <div id="user-container">
@@ -18,12 +24,12 @@ function UserCard({ name, totalTasks, overdueTasks, dueSoonTasks, behindTasks, o
             src={AppLogo}
             alt={`${APP_NAME} logo: pink ribbon with green checkmark`}
           />
-          <h1 id="user-title">{name}</h1>
+          <h1 id="user-title">{getUserFullName(userTasks.user)}</h1>
           
         </div>
         <div className="">
           
-            <p id="user-description">Total Tasks: {totalTasks}</p>
+            <p id="user-description">Total Tasks: {userTasks.tasks.length}</p>
           </div>
           <div className="user-header">
         <div id="user-features-list">
@@ -38,7 +44,7 @@ function UserCard({ name, totalTasks, overdueTasks, dueSoonTasks, behindTasks, o
                         
                     </div>
             
-                    {overdueTasks} {STATUSES.OVERDUE.label}
+                    {getNumTasksWithStatus(userTasks.tasks, STATUSES.OVERDUE.id)} {STATUSES.OVERDUE.label}
           </p>
           <p>
             <FontAwesomeIcon
@@ -51,7 +57,7 @@ function UserCard({ name, totalTasks, overdueTasks, dueSoonTasks, behindTasks, o
                         
                     </div>
             
-                    {dueSoonTasks} {STATUSES.DUE_SOON.label}
+                    {getNumTasksWithStatus(userTasks.tasks, STATUSES.DUE_SOON.id)} {STATUSES.DUE_SOON.label}
           </p>
           <p>
             <FontAwesomeIcon
@@ -64,7 +70,7 @@ function UserCard({ name, totalTasks, overdueTasks, dueSoonTasks, behindTasks, o
                         
                     </div>
             
-            {behindTasks} {STATUSES.BEHIND.label}
+                    {getNumTasksWithStatus(userTasks.tasks, STATUSES.BEHIND.id)} {STATUSES.BEHIND.label}
           </p>
           <p>
             <FontAwesomeIcon
@@ -77,19 +83,21 @@ function UserCard({ name, totalTasks, overdueTasks, dueSoonTasks, behindTasks, o
                         
                     </div>
             
-            {onTrackTasks} {STATUSES.ON_TRACK.label}
+                    {getNumTasksWithStatus(userTasks.tasks, STATUSES.ON_TRACK.id)} {STATUSES.ON_TRACK.label}
           </p>
 
         <div className="cta-section">
-        <p>Last Active: {lastActive} </p>
+        <p>Last Active: {userTasks.user.lastLoginDate} </p>
          
-         <Button id='view' variant="contained" aria-label='Button to execute view user'>{view}</Button>
-         <Button id='contact' variant="contained" aria-label='Button to execute contact use'>
-           <FontAwesomeIcon 
-                                 className='' 
-                                 icon={faCommentDots} 
-                                 style={{ color: 'var(--green)' }}
-                             /> {contact}</Button>
+         <Button id='view' variant="contained" aria-label='Button to execute view user' onClick={viewUserTasks}>View</Button>
+         <Button className='contact-btn' variant="contained" aria-label='Button to execute contact use'>
+            <FontAwesomeIcon 
+              className='' 
+              icon={faCommentDots} 
+              style={{ color: 'var(--green)' }}
+            />
+            Contact
+          </Button>
 
          </div>
         </div>
