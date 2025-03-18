@@ -45,9 +45,9 @@ function ViewUserTasks() {
             <div className='view-user-tasks-tasks-container'>
                 { userTasks.tasks.map((task) => {
                     return (
-                        <Accordion>
+                        <Accordion defaultExpanded>
                             <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
+                                expandIcon={<ExpandMoreIcon sx={{ color: 'var(--primary-text-color)' }} />}
                                 aria-controls={`Task: ${task.title}`}
                                 id={`task-${task.id}`}
                                 className='view-user-tasks-accordion-summary'
