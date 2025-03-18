@@ -19,7 +19,27 @@ export const ROUTES = {
         label: 'View Task',
         route: '/view-task/:id'
     },
+    COACH_PAGE: { 
+        id: 'coach-page',
+        label: 'Coach', 
+        route: '/coach'
+    },
+    MANAGE_USERS: { 
+        id: 'manage-users',
+        label: 'Manage Mentees',
+        route: '/manage-user/'
+    },
+    VIEW_USER_TASKS: {
+        id: 'view-user-tasks',
+        label: 'View User Tasks',
+        route: '/coach/view-user-tasks/:userid'
+    }
 };
+
+export const USER_TYPES = {
+    student: 'student',
+    coach: 'coach'
+}
 
 export const THEME_OPTIONS = {
     DARK: 'dark',
@@ -105,5 +125,21 @@ export const getTaskCompletionPercentage = (completedTime, totalTime) => {
 export const convertTime = (timeInMins) => {
     const hours = Math.floor(timeInMins / 60);
     const mins = timeInMins % 60;
-    return `${hours > 0 ? hours + ` hour${hours > 1 ? 's' : ''}` : ''}` + ' ' + `${mins > 0 ? mins + ` minute${mins > 1 ? 's' : ''}` : ''}`;
+    return `${hours > 0 ? hours + ` hour${hours > 1 ? 's' : ''}` : ''} ${mins > 0 ? mins + ` minute${mins > 1 ? 's' : ''}` : ''}`;
+}
+
+export const getUserFullName = (user) => {
+    return user.firstName + ' ' + user.lastName;
+}
+
+export const getNumTasksWithStatus = (tasks, status) => {
+    let numTasksWithStatus = 0;
+
+    tasks.forEach((task) => {
+        if (task.status.id === status) {
+            numTasksWithStatus++;
+        }
+    });
+
+    return numTasksWithStatus;
 }

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './TasksOverview.css';
+import './UsersOverview.css';
 import { Checkbox, FormControlLabel } from '@mui/material';
-import { STATUSES, ICONS } from '../global'; 
-import TasksOverviewItem from './TasksOverviewItem';
+import { STATUSES, ICONS } from '../../global'; 
+import UsersOverviewItem from './UsersOverviewItem';
 
 // TODO: REMOVE THIS LINE AND PULL FROM DB
-export const PLACEHOLDER_TASKS = [
+const PLACEHOLDER_TASKS = [
     {
         id: '1',
         title: 'Lorem ipsum this is a mock task that is overdue',
@@ -13,25 +13,26 @@ export const PLACEHOLDER_TASKS = [
         lastUpdatedDate: '2021-08-20',
         dueDate: '2021-08-15',
         status: STATUSES.OVERDUE,
+        percentageComplete: 66,
         steps: {
             1: {
                 title: 'Lorem ipsum this is step 1',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 1',
-                estimatedCompletionTime: 20,
+                estimatedCompletionTime: '20 minutes',
                 isCompleted: true,
                 linkToImage: 'https://freerangestock.com/sample/180605/cooking-ingredients-arranged-on-a-wooden-board..jpg'
             },
             2: {
                 title: 'Lorem ipsum this is step 2',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 2',
-                estimatedCompletionTime: 60,
+                estimatedCompletionTime: '1 hour',
                 isCompleted: true,
                 linkToImage: 'https://freerangestock.com/sample/69394/person-in-yellow-gloves-cooking-food-in-a-wok.jpg'
             },
             3: {
                 title: 'Lorem ipsum this is step 3',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 3',
-                estimatedCompletionTime: 30,
+                estimatedCompletionTime: '30 minutes',
                 isCompleted: false,
                 linkToImage: 'https://cdn.stocksnap.io/img-thumbs/960w/bread-serve_08XLVPG7EY.jpg'
             }
@@ -44,18 +45,19 @@ export const PLACEHOLDER_TASKS = [
         lastUpdatedDate: '2021-08-25',
         dueDate: '2021-09-01',
         status: STATUSES.DUE_SOON,
+        percentageComplete: 50,
         steps: {
             1: {
                 title: 'Lorem ipsum this is step 1',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 1',
-                estimatedCompletionTime: 600,
+                estimatedCompletionTime: '2 days',
                 isCompleted: true,
                 linkToImage: 'https://live.staticflickr.com/3298/3658147194_14bd5e4567_b.jpg'
             },
             2: {
                 title: 'Lorem ipsum this is step 2',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 2',
-                estimatedCompletionTime: 5400,
+                estimatedCompletionTime: '4 weeks',
                 isCompleted: false,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/8/85/Young_Man_in_a_Interview.jpg'
             }
@@ -68,32 +70,33 @@ export const PLACEHOLDER_TASKS = [
         lastUpdatedDate: '2021-08-25',
         dueDate: '2021-09-01',
         status: STATUSES.BEHIND,
+        percentageComplete: 25,
         steps: {
             1: {
                 title: 'Lorem ipsum this is step 1',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 1',
-                estimatedCompletionTime: 180,
+                estimatedCompletionTime: '3 hours',
                 isCompleted: true,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             },
             2: {
                 title: 'Lorem ipsum this is step 2',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 2',
-                estimatedCompletionTime: 60,
+                estimatedCompletionTime: '1 hour',
                 isCompleted: false,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             },
             3: {
                 title: 'Lorem ipsum this is step 3',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 3',
-                estimatedCompletionTime: 1800,
+                estimatedCompletionTime: '10 days',
                 isCompleted: false,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             },
             4: {
                 title: 'Lorem ipsum this is step 4',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 4',
-                estimatedCompletionTime: 150,
+                estimatedCompletionTime: '2.5 hours',
                 isCompleted: false,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             }
@@ -106,32 +109,33 @@ export const PLACEHOLDER_TASKS = [
         lastUpdatedDate: '2021-08-25',
         dueDate: '2021-09-01',
         status: STATUSES.ON_TRACK,
+        percentageComplete: 50,
         steps: {
             1: {
                 title: 'Lorem ipsum this is step 1',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 1',
-                estimatedCompletionTime: 180,
+                estimatedCompletionTime: '3 hours',
                 isCompleted: true,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             },
             2: {
                 title: 'Lorem ipsum this is step 2',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 2',
-                estimatedCompletionTime: 60,
+                estimatedCompletionTime: '1 hour',
                 isCompleted: true,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             },
             3: {
                 title: 'Lorem ipsum this is step 3',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 3',
-                estimatedCompletionTime: 5400,
+                estimatedCompletionTime: '10 days',
                 isCompleted: false,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             },
             4: {
                 title: 'Lorem ipsum this is step 4',
                 description: 'Lorem ipsum dolor emit orem ipsum dolor emit orem ipsum dolor emit and that is how you complete step 4',
-                estimatedCompletionTime: 150,
+                estimatedCompletionTime: '2.5 hours',
                 isCompleted: false,
                 linkToImage: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/PlaceholderLC.png'
             }
@@ -139,7 +143,7 @@ export const PLACEHOLDER_TASKS = [
     }
 ];
 
-function TasksOverview() {
+function UsersOverview() {
     const [tasks, setTasks] = useState([]);
     const [taskStatusCounts, setTaskStatusCounts] = useState({});
     const [statusFilters, setStatusFilters] = useState(Object.entries(STATUSES).map(([_, status]) => status.id));
@@ -208,7 +212,7 @@ function TasksOverview() {
                 <div className='tasks-overview-task-items-container'>
                     { tasks.filter((task) => isFilterSelected(task.status.id)).map((task, idx) => {
                         return (
-                            <TasksOverviewItem key={`tasks-overview-task-item-${idx}`} idx={idx + 1} task={task} />
+                            <UsersOverviewItem key={`tasks-overview-task-item-${idx}`} idx={idx + 1} task={task} />
                         )
                     })}
                 </div>
@@ -217,4 +221,4 @@ function TasksOverview() {
     );
 }
 
-export default TasksOverview;
+export default UsersOverview;

@@ -1,19 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import AppLogo from '../assets/inspire-coach-logo.png';
-import './NavBar.css';
-import { APP_NAME, ROUTES, THEME_OPTIONS } from '../global';
+import AppLogo from '../../assets/inspire-coach-logo.png';
+import './CoachNavBar.css';
+import { APP_NAME, ROUTES, THEME_OPTIONS } from '../../global';
 import Switch from "react-switch";  
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon, faBell, faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { Popover, Button, Typography } from '@mui/material';
 
-const EXCLUDE_ROUTES = {
-    'student': ['home-page', 'view-task', 'coach-page', 'manage-users', 'view-user-tasks'],
-    'coach': ['home-page', 'view-task', 'coach-page', 'manage-tasks', 'view-user-tasks'],
-}
+const EXCLUDE_ROUTES = ['home-page', 'view-task', 'coach-page'];
 
-const NavBar = ({ defaultTheme, onThemeChange, userType }) => {
+const CoachNavBar = ({ defaultTheme, onThemeChange }) => {
     const [isDarkMode, setIsDarkMode] = React.useState(defaultTheme === THEME_OPTIONS.DARK);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -34,26 +31,26 @@ const NavBar = ({ defaultTheme, onThemeChange, userType }) => {
     const alertPopoverId = open ? 'alert-popover' : undefined;
 
     return (
-        <nav id='nav-bar'>
-            <div id='nav-bar-app-logo-name-container'>
-                <img id='nav-bar-app-logo' src={AppLogo} alt={`${APP_NAME} logo: pink ribbon with green checkmark`} />
-                <a href={ROUTES.HOME_PAGE.route} id='nav-bar-app-name-link'><h1 id='nav-bar-app-name'>{APP_NAME}</h1></a>
+        <nav id='coachNav-bar'>
+            <div id='coachNav-bar-app-logo-name-container'>
+                <img id='coachNav-bar-app-logo' src={AppLogo} alt={`${APP_NAME} logo: pink ribbon with green checkmark`} />
+                <a href={ROUTES.COACH_PAGE.route} id='coachNav-bar-app-name-link'><h1 id='coachNav-bar-app-name'>{APP_NAME}</h1></a>
             </div>
-            <div id='nav-bar-links-container'>
+            <div id='coachNav-bar-links-container'>
                 { Object.entries(ROUTES).map(([_, value]) => {
-                    if (EXCLUDE_ROUTES[userType].includes(value.id)) return null;
+                    if (EXCLUDE_ROUTES.includes(value.id)) return null;
                     return (
                         <NavLink 
-                            key={`nav-link-${value.id}`}  
+                            key={`coachNav-link-${value.id}`}  
                             to={value.route} 
                             exact='true'
-                            className={({ isActive }) => `nav-bar-link ${isActive ? 'nav-link-active' : ''}`}>
+                            className={({ isActive }) => `coachNav-bar-link ${isActive ? 'coachNav-link-active' : ''}`}>
                             {value.label}
                         </NavLink>
                     );
                 })}
             </div>
-            <div id='nav-bar-profile-container'>
+            <div id='coachNav-bar-profile-container'>
                 <Switch
                     id="dark-mode-switch"
                     onChange={toggleDarkMode}
@@ -85,11 +82,11 @@ const NavBar = ({ defaultTheme, onThemeChange, userType }) => {
                 </Popover>
                 <div id='user-profile-container'>
                     <FontAwesomeIcon id='user-profile-icon' icon={faCircleUser} />
-                    <h3 id='user-profile-name'>User Name</h3>
+                    <h3 id='user-profile-name'>Coach Profile </h3>
                 </div>
             </div>
         </nav>
     );
 };
 
-export default NavBar;
+export default CoachNavBar;
