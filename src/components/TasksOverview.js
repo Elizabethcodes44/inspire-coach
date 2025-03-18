@@ -5,7 +5,7 @@ import { STATUSES, ICONS } from '../global';
 import TasksOverviewItem from './TasksOverviewItem';
 
 // TODO: REMOVE THIS LINE AND PULL FROM DB
-const PLACEHOLDER_TASKS = [
+export const PLACEHOLDER_TASKS = [
     {
         id: '1',
         title: 'Lorem ipsum this is a mock task that is overdue',

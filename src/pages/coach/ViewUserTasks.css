@@ -1,0 +1,79 @@
+.view-user-tasks-container {
+    height: 100%;
+    padding: 20px 100px;
+}
+
+.view-user-tasks-header-container {
+    display: flex;
+    justify-content: center;
+}
+
+.view-user-tasks-last-active-date {
+    font-size: var(--secondary-font-size);
+    font-style: italic;
+    margin: 0;
+    margin-right: 20px;
+}
+
+.view-user-tasks-task-counts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-size: var(--default-font-size);
+}
+
+.view-user-tasks-task-count {
+   margin: 0;
+   margin-right: 10px;
+}
+
+.view-user-tasks-status-counts {
+    display: flex;
+    justify-content: center;
+    background-color: var(--white);
+    border-radius: 15px;
+}
+
+.view-user-tasks-status-count {
+    margin: 5px;
+    padding: 5px;
+}
+
+.view-user-tasks-tasks-container {
+    margin-top: 15px;
+}
+
+.view-user-tasks-accordion-summary {
+    display: flex;
+    align-items: center;
+}
+
+.view-user-tasks-status {
+    font-size: var(--default-font-size);
+    margin-right: 10px;
+    padding: 5px;
+}
+
+.view-user-tasks-accordion-header-text {
+    color: var(--primary-text-color);
+    font-size: var(--default-font-size) !important;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.view-user-tasks-dates {
+    display: flex;
+    align-items: center;
+    font-size: var(--default-font-size) !important;
+    color: var(--primary-text-color);
+}
+
+.MuiAccordion-root {
+    background-color: var(--background-color) !important;
+    border: 3px solid var(--primary-text-color);
+}
+.view-task-steps-container {
+    color: var(--primary-text-color);
+}

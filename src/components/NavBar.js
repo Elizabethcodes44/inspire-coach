@@ -8,9 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon, faBell, faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { Popover, Button, Typography } from '@mui/material';
 
-const EXCLUDE_ROUTES = ['home-page', 'view-task'];
+const EXCLUDE_ROUTES = {
+    'student': ['home-page', 'view-task', 'coach-page', 'manage-users', 'view-user-tasks'],
+    'coach': ['home-page', 'view-task', 'coach-page', 'manage-tasks', 'view-user-tasks'],
+}
 
-const NavBar = ({ defaultTheme, onThemeChange }) => {
+const NavBar = ({ defaultTheme, onThemeChange, userType }) => {
     const [isDarkMode, setIsDarkMode] = React.useState(defaultTheme === THEME_OPTIONS.DARK);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -38,7 +41,7 @@ const NavBar = ({ defaultTheme, onThemeChange }) => {
             </div>
             <div id='nav-bar-links-container'>
                 { Object.entries(ROUTES).map(([_, value]) => {
-                    if (EXCLUDE_ROUTES.includes(value.id)) return null;
+                    if (EXCLUDE_ROUTES[userType].includes(value.id)) return null;
                     return (
                         <NavLink 
                             key={`nav-link-${value.id}`}  

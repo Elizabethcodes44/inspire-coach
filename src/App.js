@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
-import CoachNavBar from "./components/Coach/CoachNavbar";
-import { ROUTES, THEME_OPTIONS } from "./global";
-import {ROUTES as COACHROUTES } from "./coachGlobal";
+import { ROUTES, THEME_OPTIONS, USER_TYPES } from "./global";
 
 import useLocalStorage from "use-local-storage";
 
@@ -19,6 +17,7 @@ import ViewTask from "./pages/ViewTask";
 //Coach Routes
 import Coach from "./pages/coach/Coach";
 import ManageUsers from "./pages/coach/ManageUsers";
+import ViewUserTasks from "./pages/coach/ViewUserTasks";
 
 
 //auth toutes
@@ -42,7 +41,8 @@ function AppContent() {
     defaultDark ? THEME_OPTIONS.DARK : THEME_OPTIONS.LIGHT
   );
   const [isLoading, setIsLoading] = useState(true);
-  const location = useLocation();
+
+  // TODO: get logged in user and pass in user type to nav bar
 
   useEffect(() => {
     setTimeout(() => {
@@ -64,23 +64,14 @@ function AppContent() {
     <div className="App" data-theme={theme}>
       {isLoading ? <Preloader /> : ""}
       <LoadTop />
-      {!noNavBarRoutes.includes(normalizePath(location.pathname)) && (
-        <NavBar
-          defaultTheme={theme}
-          onThemeChange={(newTheme) => setTheme(newTheme)}
-        />
-      )}
-      {!isNoCoachNavBarRoute(location.pathname) && (
-        <CoachNavBar
-          defaultTheme={theme}
-          onThemeChange={(newTheme) => setTheme(newTheme)}
-        />
-      )}
+      <NavBar
+        defaultTheme={theme}
+        onThemeChange={(newTheme) => setTheme(newTheme)}
+        userType={USER_TYPES.coach}
+      />
       <Routes>
         <Route path={ROUTES.HOME_PAGE.route} element={<Home />} />
         <Route path={ROUTES.MANAGE_TASKS.route} element={<ManageTasks />} />
-        <Route path={COACHROUTES.MANAGE_USERS.route} element={<ManageUsers />} />
-
         <Route path={ROUTES.VIEW_TASK.route} element={<ViewTask />} />
 
         <Route path="/login" element={<Login />} />
@@ -99,9 +90,11 @@ function AppContent() {
           path="/userdashboard/*"
           element={<ProtectedRoute>{/* <UserDashboard /> */}</ProtectedRoute>}
         />
+        <Route path={ROUTES.MANAGE_USERS.route} element={<ManageUsers />} />
         <Route path="/" exact element={<Home />} />
         <Route path="/userHome" exact element={<Home />} />
         <Route path="/coach" element={<Coach />} />
+        <Route path={ROUTES.VIEW_USER_TASKS.route} element={<ViewUserTasks />} />
         <Route path="/otp" element={<OTP />} />
 
         <Route path="/forgot-password" element={<ForgotPassword />} />
