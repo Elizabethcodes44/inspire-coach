@@ -8,6 +8,7 @@
   --background-color: var(--white);
   --primary-text-color: var(--black);
   --button-bg-color: var(--green);
+  --auth-link-color: var(--purple);
 
   --status-on-track: #19b719;
   --status-behind: #bda30f;
@@ -35,6 +36,7 @@
   --primary-text-color: var(--white);
 
   --button-bg-color: var(--purple);
+  --auth-link-color: var(--pink);
 
   --colored-text-bg: var(--white);
   --colored-text-border-radius: 15px;
@@ -77,3 +79,11 @@ body, html {
   color: var(--primary-text-color) !important;
 }
 
+.auth-link{
+  color: var(--auth-link-color);
+  text-decoration: underline;
+}
+
+.red{
+  color: red;
+}

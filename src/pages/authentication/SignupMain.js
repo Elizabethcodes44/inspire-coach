@@ -8,23 +8,23 @@ const SignupMain = () => {
     
     // State for form fields and errors
     const [formData, setFormData] = useState({
-        email: '',
-        firstName: '',
-        lastName: '',
-        password: '',
+        Email: '',
+        FirstName: '',
+        LastName: '',
+        Password: '',
         confirmPassword: '',
         termsAccepted: false,
-        userType: 'student'
+        // userType: 'student'
     });
 
     const [errors, setErrors] = useState({
-        email: '',
-        firstName: '',
-        lastName: '',
-        password: '',
+        Email: '',
+        FirstName: '',
+        LastName: '',
+        Password: '',
         confirmPassword: '',
         termsAccepted: '',
-        userType: ''
+        // userType: ''
     });
 
     const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +32,7 @@ const SignupMain = () => {
 
     // Focus the first input on mount
     useEffect(() => {
-        document.getElementById('email').focus();
+        document.getElementById('Email').focus();
     }, []);
 
     const handleInputChange = (e) => {
@@ -48,40 +48,40 @@ const SignupMain = () => {
         let isValid = true;
 
         // Email Validation
-        if (!formData.email) {
-            formErrors.email = 'Email is required';
+        if (!formData.Email) {
+            formErrors.Email = 'Email is required';
             isValid = false;
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            formErrors.email = 'Email is invalid';
+        } else if (!/\S+@\S+\.\S+/.test(formData.Email)) {
+            formErrors.Email = 'Email is invalid';
             isValid = false;
         }
 
         // First Name Validation
-        if (!formData.firstName) {
-            formErrors.firstName = 'First name is required';
+        if (!formData.FirstName) {
+            formErrors.FirstName = 'First name is required';
             isValid = false;
         }
 
         // Last Name Validation
-        if (!formData.lastName) {
-            formErrors.lastName = 'Last name is required';
+        if (!formData.LastName) {
+            formErrors.LastName = 'Last name is required';
             isValid = false;
         }
 
         // Password Validation
-        if (!formData.password) {
-            formErrors.password = 'Password is required';
+        if (!formData.Password) {
+            formErrors.Password = 'Password is required';
             isValid = false;
-        } else if (formData.password.length < 8) {
-            formErrors.password = 'Password must be at least 8 characters';
+        } else if (formData.Password.length < 8) {
+            formErrors.Password = 'Password must be at least 8 characters';
             isValid = false;
         }
 
         // Confirm Password Validation
         if (!formData.confirmPassword) {
-            formErrors.confirmPassword = 'Confirm password is required';
+            formErrors.confirmPassword = 'Confirm Password is required';
             isValid = false;
-        } else if (formData.confirmPassword !== formData.password) {
+        } else if (formData.confirmPassword !== formData.Password) {
             formErrors.confirmPassword = 'Passwords do not match';
             isValid = false;
         }
@@ -102,18 +102,19 @@ const SignupMain = () => {
         if (validateForm()) {
             setIsLoading(true);
             const data = {
-                email: formData.email,
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                password: formData.password,
-                password_confirmation: formData.confirmPassword,
-                userType: formData.userType
+                FirstName: formData.FirstName,
+                LastName: formData.LastName,
+                Email: formData.Email,
+                Password: formData.Password,
+                // password_confirmation: formData.confirmPassword,
+                // userType: formData.userType
             };
 
-            const apiUrl = process.env.REACT_APP_URL || 'http://172.191.191.154'; // Add a fallback URL
+            const apiUrl = process.env.REACT_APP_URL ; // Add a fallback URL
             console.log('API URL:', apiUrl); // Log the environment variable
     
             try {
+                console.log(data);
                 const response = await fetch(`${apiUrl}/api/users/coachsignup`, {
                     method: 'POST',
                     headers: {
@@ -121,16 +122,17 @@ const SignupMain = () => {
                     },
                     body: JSON.stringify(data)
                 });
+
     
                 const result = await response.json();
     
                 if (response.ok) {
                     console.log('Registration successful:', result);
-                    // Save the email to localStorage
-                    localStorage.setItem('userEmail', formData.email);
+                    // Save the Email to localStorage
+                    localStorage.setItem('userEmail', formData.Email);
     
                     setPopup({
-                        message: "Registration successful! An OTP has been sent to your email",
+                        message: "Registration successful! An OTP has been sent to your Email",
                         type: "success",
                         isVisible: true,
                         buttonLabel: "Proceed to enter OTP received",
@@ -173,52 +175,53 @@ const SignupMain = () => {
                         <div className="login-right-form">
                             <form onSubmit={handleSubmit}>
                                 <div className="login-top">
-                                    <h3>Sign Up</h3>
+                                    <h3>Coach Sign Up</h3>
                                     <p>
-                                        Already have an account? <Link to="/login">Log in</Link>
+                                        Already have an account? <Link to="/login" className='auth-link'>Log in</Link>
                                     </p>
+                                    <p className='red'>For mentee/users, contact your coach to sign up as a mentee</p>
                                 </div>
 
                                 <p>
-                                    <label htmlFor="email">Email</label>
+                                    <label htmlFor="Email">Email</label>
                                     <input
                                         placeholder="Email"
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        value={formData.email}
+                                        type="Email"
+                                        id="Email"
+                                        name="Email"
+                                        value={formData.Email}
                                         onChange={handleInputChange}
-                                        aria-describedby="email-error"
+                                        aria-describedby="Email-error"
                                     />
-                                    {errors.email && <span id="email-error" role="alert" style={{ color: 'red' }}>{errors.email}</span>}
+                                    {errors.Email && <span id="Email-error" role="alert" style={{ color: 'red' }}>{errors.Email}</span>}
                                 </p>
 
                                 <p>
-                                    <label htmlFor="firstName">First Name</label>
+                                    <label htmlFor="FirstName">First Name</label>
                                     <input
                                         placeholder="First Name"
                                         type="text"
-                                        id="firstName"
-                                        name="firstName"
-                                        value={formData.firstName}
+                                        id="FirstName"
+                                        name="FirstName"
+                                        value={formData.FirstName}
                                         onChange={handleInputChange}
-                                        aria-describedby="firstName-error"
+                                        aria-describedby="FirstName-error"
                                     />
-                                    {errors.firstName && <span id="firstName-error" role="alert" style={{ color: 'red' }}>{errors.firstName}</span>}
+                                    {errors.FirstName && <span id="FirstName-error" role="alert" style={{ color: 'red' }}>{errors.FirstName}</span>}
                                 </p>
 
                                 <p>
-                                    <label htmlFor="lastName">Last Name</label>
+                                    <label htmlFor="LastName">Last Name</label>
                                     <input
                                         placeholder="Last Name"
                                         type="text"
-                                        id="lastName"
-                                        name="lastName"
-                                        value={formData.lastName}
+                                        id="LastName"
+                                        name="LastName"
+                                        value={formData.LastName}
                                         onChange={handleInputChange}
-                                        aria-describedby="lastName-error"
+                                        aria-describedby="LastName-error"
                                     />
-                                    {errors.lastName && <span id="lastName-error" role="alert" style={{ color: 'red' }}>{errors.lastName}</span>}
+                                    {errors.LastName && <span id="LastName-error" role="alert" style={{ color: 'red' }}>{errors.LastName}</span>}
                                 </p>
 
                                 <p>
@@ -226,12 +229,12 @@ const SignupMain = () => {
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <input
                                             placeholder="Password"
-                                            type={showPassword ? 'text' : 'password'}
+                                            type={showPassword ? 'text' : 'Password'}
                                             id="pass"
-                                            name="password"
-                                            value={formData.password}
+                                            name="Password"
+                                            value={formData.Password}
                                             onChange={handleInputChange}
-                                            aria-describedby="password-error"
+                                            aria-describedby="Password-error"
                                         />
                                         <button
                                             type="button"
@@ -241,24 +244,24 @@ const SignupMain = () => {
                                             {showPassword ? 'Hide' : 'Show'}
                                         </button>
                                     </div>
-                                    {errors.password && <span id="password-error" role="alert" style={{ color: 'red' }}>{errors.password}</span>}
+                                    {errors.Password && <span id="Password-error" role="alert" style={{ color: 'red' }}>{errors.Password}</span>}
                                 </p>
 
                                 <p>
                                     <label htmlFor="confirm-pass">Confirm Password</label>
                                     <input
                                         placeholder="Confirm Password"
-                                        type="password"
+                                        type="Password"
                                         id="confirm-pass"
                                         name="confirmPassword"
                                         value={formData.confirmPassword}
                                         onChange={handleInputChange}
-                                        aria-describedby="confirm-password-error"
+                                        aria-describedby="confirm-Password-error"
                                     />
-                                    {errors.confirmPassword && <span id="confirm-password-error" role="alert" style={{ color: 'red' }}>{errors.confirmPassword}</span>}
+                                    {errors.confirmPassword && <span id="confirm-Password-error" role="alert" style={{ color: 'red' }}>{errors.confirmPassword}</span>}
                                 </p>
 
-                                <p>
+                                {/* <p>
                                     <label htmlFor="userType">I am a</label>
                                     <select
                                         id="userType"
@@ -271,7 +274,7 @@ const SignupMain = () => {
                                         <option value="coach">Coach</option>
                                     </select>
                                     {errors.userType && <span id="userType-error" role="alert" style={{ color: 'red' }}>{errors.userType}</span>}
-                                </p>
+                                </p> */}
 
                                 <div className="back-check-box">
                                     <input
