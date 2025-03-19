@@ -6,7 +6,7 @@ import '../assets/scss/_menu.scss';
 import { APP_NAME, ROUTES, THEME_OPTIONS } from '../global';
 import Switch from "react-switch";  
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon, faBell, faCircleUser, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faMoon, faBell, faCircleUser, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Popover, Button, Typography } from '@mui/material';
 
 const EXCLUDE_ROUTES = {
@@ -48,30 +48,7 @@ const NavBar = ({ defaultTheme, onThemeChange, userType }) => {
                 <img id='nav-bar-app-logo' src={AppLogo} alt={`${APP_NAME} logo: pink ribbon with green checkmark`} />
                 <a href={ROUTES.HOME_PAGE.route} id='nav-bar-app-name-link'><h3 id='nav-bar-app-name'>{APP_NAME}</h3></a>
             </div>
-            {isMobile && (
-                <button
-                    className={`mobile-menu-btn ${menuOpen ? 'open' : ''}`}
-                    onClick={() => setMenuOpen(!menuOpen)}
-                >
-                    <FontAwesomeIcon icon={faBars} />
-                </button>
-            )}
-            <div id='nav-bar-links-container' className={menuOpen ? 'open' : ''}>
-                
-                <div id='nav-bar-profile-container'>
-                { Object.entries(ROUTES).map(([_, value]) => {
-                    if (EXCLUDE_ROUTES[userType].includes(value.id)) return null;
-                    return (
-                        <NavLink 
-                            key={`nav-link-${value.id}`}  
-                            to={value.route} 
-                            exact='true'
-                            className={({ isActive }) => `nav-bar-link ${isActive ? 'nav-link-active' : ''}`}>
-                            {value.label}
-                        </NavLink>
-                    );
-                })}
-                    <Switch
+            <Switch
                         id="dark-mode-switch"
                         onChange={toggleDarkMode}
                         checked={isDarkMode}
@@ -85,6 +62,31 @@ const NavBar = ({ defaultTheme, onThemeChange, userType }) => {
                         checkedHandleIcon={<FontAwesomeIcon icon={faMoon} style={{ color: 'var(--black)' }} />}  /* switch on icon (right) */
                         aria-label={`toggle theme to ${isDarkMode ? THEME_OPTIONS.DARK : THEME_OPTIONS.LIGHT} mode`}
                     />
+            {isMobile && (
+                <button
+                    className={`mobile-menu-btn ${menuOpen ? 'open' : ''}`}
+                    onClick={() => setMenuOpen(!menuOpen)}
+                >
+                    <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} />
+                </button>
+            )}
+            
+            <div id='nav-bar-links-container' className={menuOpen ? 'open' : ''}>
+                
+                <div id='nav-bar-profile-container'>
+                    
+                    { Object.entries(ROUTES).map(([_, value]) => {
+                    if (EXCLUDE_ROUTES[userType].includes(value.id)) return null;
+                    return (
+                        <NavLink 
+                            key={`nav-link-${value.id}`}  
+                            to={value.route} 
+                            exact='true'
+                            className={({ isActive }) => `nav-bar-link ${isActive ? 'nav-link-active' : ''}`}>
+                            {value.label}
+                        </NavLink>
+                    );
+                })}
                     <Button id='alerts-btn' aria-describedby={alertPopoverId} variant="text" onClick={handleClick}>
                         <FontAwesomeIcon id='alerts-icon' icon={faBell} />
                     </Button>

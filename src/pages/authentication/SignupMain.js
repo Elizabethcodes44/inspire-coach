@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import Popup from '../../components/Popup/Popup'
-
+import Popup from '../../components/Popup/Popup';
 
 const SignupMain = () => {
     const navigate = useNavigate();
@@ -10,25 +9,26 @@ const SignupMain = () => {
     // State for form fields and errors
     const [formData, setFormData] = useState({
         email: '',
-        username: '',
+        firstName: '',
+        lastName: '',
         password: '',
         confirmPassword: '',
-        termsAccepted: false
+        termsAccepted: false,
+        userType: 'student'
     });
 
     const [errors, setErrors] = useState({
         email: '',
-        username: '',
+        firstName: '',
+        lastName: '',
         password: '',
         confirmPassword: '',
-        termsAccepted: ''
+        termsAccepted: '',
+        userType: ''
     });
 
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-
-
-
 
     // Focus the first input on mount
     useEffect(() => {
@@ -56,9 +56,15 @@ const SignupMain = () => {
             isValid = false;
         }
 
-        // Username Validation
-        if (!formData.username) {
-            formErrors.username = 'Username is required';
+        // First Name Validation
+        if (!formData.firstName) {
+            formErrors.firstName = 'First name is required';
+            isValid = false;
+        }
+
+        // Last Name Validation
+        if (!formData.lastName) {
+            formErrors.lastName = 'Last name is required';
             isValid = false;
         }
 
@@ -97,13 +103,18 @@ const SignupMain = () => {
             setIsLoading(true);
             const data = {
                 email: formData.email,
-                username: formData.username,
+                firstName: formData.firstName,
+                lastName: formData.lastName,
                 password: formData.password,
-                password_confirmation: formData.confirmPassword
+                password_confirmation: formData.confirmPassword,
+                userType: formData.userType
             };
+
+            const apiUrl = process.env.REACT_APP_URL || 'http://172.191.191.154'; // Add a fallback URL
+            console.log('API URL:', apiUrl); // Log the environment variable
     
             try {
-                const response = await fetch(`${process.env.REACT_APP_URL}/api/register`, {
+                const response = await fetch(`${apiUrl}/api/coachsignup`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -183,17 +194,31 @@ const SignupMain = () => {
                                 </p>
 
                                 <p>
-                                    <label htmlFor="username">User Name</label>
+                                    <label htmlFor="firstName">First Name</label>
                                     <input
-                                        placeholder="User Name"
+                                        placeholder="First Name"
                                         type="text"
-                                        id="username"
-                                        name="username"
-                                        value={formData.username}
+                                        id="firstName"
+                                        name="firstName"
+                                        value={formData.firstName}
                                         onChange={handleInputChange}
-                                        aria-describedby="username-error"
+                                        aria-describedby="firstName-error"
                                     />
-                                    {errors.username && <span id="username-error" role="alert" style={{ color: 'red' }}>{errors.username}</span>}
+                                    {errors.firstName && <span id="firstName-error" role="alert" style={{ color: 'red' }}>{errors.firstName}</span>}
+                                </p>
+
+                                <p>
+                                    <label htmlFor="lastName">Last Name</label>
+                                    <input
+                                        placeholder="Last Name"
+                                        type="text"
+                                        id="lastName"
+                                        name="lastName"
+                                        value={formData.lastName}
+                                        onChange={handleInputChange}
+                                        aria-describedby="lastName-error"
+                                    />
+                                    {errors.lastName && <span id="lastName-error" role="alert" style={{ color: 'red' }}>{errors.lastName}</span>}
                                 </p>
 
                                 <p>
@@ -232,7 +257,21 @@ const SignupMain = () => {
                                     />
                                     {errors.confirmPassword && <span id="confirm-password-error" role="alert" style={{ color: 'red' }}>{errors.confirmPassword}</span>}
                                 </p>
-                                
+
+                                <p>
+                                    <label htmlFor="userType">I am a</label>
+                                    <select
+                                        id="userType"
+                                        name="userType"
+                                        value={formData.userType}
+                                        onChange={handleInputChange}
+                                        aria-describedby="userType-error"
+                                    >
+                                        <option value="student">Student</option>
+                                        <option value="coach">Coach</option>
+                                    </select>
+                                    {errors.userType && <span id="userType-error" role="alert" style={{ color: 'red' }}>{errors.userType}</span>}
+                                </p>
 
                                 <div className="back-check-box">
                                     <input
@@ -242,9 +281,9 @@ const SignupMain = () => {
                                         checked={formData.termsAccepted}
                                         onChange={handleInputChange}
                                     />
-                                <p>I agree to the <em>terms to terms and condition</em></p>                                </div>
-                                <p>{errors.termsAccepted && <span className="error" style={{ color: 'red' }}>{errors.termsAccepted}</span>}                                    </p>
-
+                                    <p>I agree to the <em>terms and conditions</em></p>
+                                </div>
+                                <p>{errors.termsAccepted && <span className="error" style={{ color: 'red' }}>{errors.termsAccepted}</span>}</p>
 
                                 <button type="submit" id="button" name="submit" disabled={isLoading}>
                                     {isLoading ? 'Registering...' : 'Register'}

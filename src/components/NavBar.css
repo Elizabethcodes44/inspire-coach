@@ -52,6 +52,7 @@
 
 div:has(> .react-switch-handle) {
     border: 2px solid var(--primary-text-color);
+    margin-right: .7rem;
 }
 
 #alerts-btn {
@@ -90,7 +91,8 @@ div:has(> .react-switch-handle) {
     color: var(--primary-text-color);
 }
 
-@media (max-width: 768px) {
+
+@media (max-width: 800px) {
     #nav-bar-links-container {
         display: none;
         flex-direction: column;
@@ -105,9 +107,41 @@ div:has(> .react-switch-handle) {
 
     #nav-bar-links-container.open {
         display: flex;
+        flex-direction: column;
     }
 
     .mobile-menu-btn {
         display: block;
+    }
+    #nav-bar-app-name {
+        font-size: 1.5rem;
+        margin: 1rem 0;
+        color: var(--primary-text-color);
+    }
+
+    .nav-bar-link {
+        font-size: 1rem;
+        text-decoration: none;
+        color: var(--primary-text-color);
+    }
+    #nav-bar-profile-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    #user-profile-icon {
+        color: var(--primary-text-color);
+        font-size: 1.5rem;
+        margin-right: 15px;
+    }
+    
+    #user-profile-name {
+        font-size: 1rem;
+        margin: 0;
+    }
+    #alerts-icon {
+        color: var(--primary-text-color);
+        font-size: 1.5rem;
     }
 }
