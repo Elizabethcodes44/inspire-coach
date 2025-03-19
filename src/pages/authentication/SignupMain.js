@@ -114,7 +114,7 @@ const SignupMain = () => {
             console.log('API URL:', apiUrl); // Log the environment variable
     
             try {
-                const response = await fetch(`${apiUrl}/api/coachsignup`, {
+                const response = await fetch(`${apiUrl}/api/users/coachsignup`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

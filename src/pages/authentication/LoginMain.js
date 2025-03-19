@@ -70,7 +70,7 @@ const LoginMain = () => {
                 const apiUrl = process.env.REACT_APP_URL || 'http://172.191.191.154'; // Add a fallback URL
             console.log('API URL:', apiUrl); // Log the environment variable
 
-                const response = await fetch(`${apiUrl}/api/coachlogin`, {
+                const response = await fetch(`${apiUrl}/api/users/coachlogin`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
