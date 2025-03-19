@@ -22,6 +22,7 @@ import ViewUserTasks from "./pages/coach/ViewUserTasks";
 //auth routes
 import AdminProtectedRoute from "./app/AdminProctectedRoute";
 import ProtectedRoute from "./app/ProtectedRoute";
+import UserProtectedRoute from "./app/UserProtectedRoute";
 import AdminLogin from "./pages/authentication/adminLogin";
 import CoachLogin from "./pages/authentication/coachLogin";
 import Login from "./pages/authentication/login";
@@ -48,7 +49,7 @@ function AppContent() {
     }, 500);
   }, []);
 
-  const noNavBarRoutes = ["/login", "/forgot-password", "/otp", "/adminlogin", "/signup"];
+  const noNavBarRoutes = ["/login", "/forgot-password", "/otp", "/adminlogin", "/signup", "/coachlogin"];
   const noCoachNavBarRoutes = ["", "/", "/login", "/forgot-password", "/otp", "/adminlogin", "/signup", "/coachlogin", "/userhome", "/manage-tasks", "/view-task", "/admindashboard", "/userdashboard"];
 
   const normalizePath = (path) => path.toLowerCase().replace(/\/$/, "");
@@ -71,7 +72,7 @@ function AppContent() {
       )}
       <Routes>
         <Route path={ROUTES.HOME_PAGE.route} element={<Home />} />
-        <Route path={ROUTES.MANAGE_TASKS.route} element={<ManageTasks />} />
+        <Route path={ROUTES.MANAGE_TASKS.route} element={  <UserProtectedRoute> <ManageTasks /> </UserProtectedRoute>} />
         <Route path={ROUTES.VIEW_TASK.route} element={<ViewTask />} />
 
         <Route path="/login" element={<Login />} />
@@ -90,10 +91,10 @@ function AppContent() {
           path="/userdashboard/*"
           element={<ProtectedRoute>{/* <UserDashboard /> */}</ProtectedRoute>}
         />
-        <Route path={ROUTES.MANAGE_USERS.route} element={<ManageUsers />} />
+        <Route path={ROUTES.MANAGE_USERS.route} element={ <ProtectedRoute> <ManageUsers /> </ProtectedRoute> } />
         <Route path="/" exact element={<Home />} />
         <Route path="/userHome" exact element={<Home />} />
-        <Route path="/coach" element={<Coach />} />
+        <Route path="/coach" element={ <ProtectedRoute> <Coach /> </ProtectedRoute>} />
         <Route path={ROUTES.VIEW_USER_TASKS.route} element={<ViewUserTasks />} />
         <Route path="/otp" element={<OTP />} />
 

@@ -11,14 +11,14 @@ const LoginMain = () => {
 
     // State for form fields and errors
     const [formData, setFormData] = useState({
-        email: '',
-        password: '',
+        Email: '',
+        Password: '',
         rememberMe: false,
     });
 
     const [errors, setErrors] = useState({
-        email: '',
-        password: '',
+        Email: '',
+        Password: '',
     });
 
     const handleInputChange = (e) => {
@@ -34,20 +34,20 @@ const LoginMain = () => {
         let isValid = true;
 
         // Email Validation
-        if (!formData.email) {
-            formErrors.email = 'Email is required';
+        if (!formData.Email) {
+            formErrors.Email = 'Email is required';
             isValid = false;
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            formErrors.email = 'Email is invalid';
+        } else if (!/\S+@\S+\.\S+/.test(formData.Email)) {
+            formErrors.Email = 'Email is invalid';
             isValid = false;
         }
 
         // Password Validation
-        if (!formData.password) {
-            formErrors.password = 'Password is required';
+        if (!formData.Password) {
+            formErrors.Password = 'Password is required';
             isValid = false;
-        } else if (formData.password.length < 6) {
-            formErrors.password = 'Password must be at least 6 characters';
+        } else if (formData.Password.length < 6) {
+            formErrors.Password = 'Password must be at least 6 characters';
             isValid = false;
         }
 
@@ -62,36 +62,55 @@ const LoginMain = () => {
         if (validateForm()) {
             setIsLoading(true);
             const data = {
-                email: formData.email,                
-                password: formData.password,
+                Email: formData.Email,                
+                Password: formData.Password,
             };
 
             try {
-                const apiUrl = process.env.REACT_APP_URL || 'http://172.191.191.154'; // Add a fallback URL
+                const apiUrl = process.env.REACT_APP_URL ; // Add a fallback URL
             console.log('API URL:', apiUrl); // Log the environment variable
 
-                const response = await fetch(`${apiUrl}/api/users/coachlogin`, {
+                const response = await fetch(`${apiUrl}/api/users/userlogin`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(data)
                 });
+                console.log(response);
     
                 const result = await response.json();
+                console.log(result);
     
                 if (response.ok) {
                     console.log('Login successful:', result);
-                    // Save the token to localStorage
+                    
+
+                    const role = result.role
+                    if (role == 'coach'){
+                        // Save the token to localStorage
                     localStorage.setItem('authToken', result.token);
-    
-                    setPopup({
-                        message: "Login successful!",
-                        type: "success",
-                        isVisible: true,
-                        buttonLabel: "Proceed to your application Dashboard",
-                        buttonRoute: "/userdashboard",
-                    });
+                    console.log( "this is coach token:", localStorage.getItem("authToken"));
+                        setPopup({
+                            message: "Login successful!",
+                            type: "success",
+                            isVisible: true,
+                            buttonLabel: "Proceed to your Dashboard",
+                            buttonRoute: "/coach",
+                        });
+                    } else {
+                        // Save the token to localStorage
+                    localStorage.setItem('userAuthToken', result.token);
+                    console.log("this is user token:", localStorage.getItem("userAuthToken"));
+                        setPopup({
+                            message: "Login successful!",
+                            type: "success",
+                            isVisible: true,
+                            buttonLabel: "Proceed to your Dashboard",
+                            buttonRoute: "/manage-tasks",
+                        });
+                    }
+                    
                 } else {
                     console.error('Login failed:', result);
                     const errorMessages = result.message
@@ -125,22 +144,22 @@ const LoginMain = () => {
                     <div className="col-lg-12">
                         <div className="login-right-form">
                             <form onSubmit={handleSubmit}>
-                                <div className="login-top">
-                                    <h3>Login</h3>
-                                    <p>Don't have an account yet? <a href="/signup">Sign up for free</a></p>
+                            <div className="login-top">
+                                    <h3>Coach & Mentee Login</h3>
+                                    <p>Don't have an account yet? <span className='red'> Contact your coach </span> or <a href="/signup" className='auth-link'> Sign up as a coach  free</a></p>
                                 </div>
 
                                 <p>
                                     <label>Email</label>
                                     <input
                                         placeholder="Email"
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        value={formData.email}
+                                        type="Email"
+                                        id="Email"
+                                        name="Email"
+                                        value={formData.Email}
                                         onChange={handleInputChange}
                                     />
-                                    {errors.email && <span className="error"  style={{color: "red"}}>{errors.email}</span>}
+                                    {errors.Email && <span className="error"  style={{color: "red"}}>{errors.Email}</span>}
                                 </p>
 
                                 <p>
@@ -148,12 +167,12 @@ const LoginMain = () => {
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <input
                                             placeholder="Password"
-                                            type={showPassword ? 'text' : 'password'}
+                                            type={showPassword ? 'text' : 'Password'}
                                             id="pass"
-                                            name="password"
-                                            value={formData.password}
+                                            name="Password"
+                                            value={formData.Password}
                                             onChange={handleInputChange}
-                                            aria-describedby="password-error"
+                                            aria-describedby="Password-error"
                                         />
                                         <button
                                             type="button"
@@ -163,7 +182,7 @@ const LoginMain = () => {
                                             {showPassword ? 'Hide' : 'Show'}
                                         </button>
                                     </div>
-                                    {errors.password && <span id="password-error" role="alert" style={{ color: 'red' }}>{errors.password}</span>}
+                                    {errors.Password && <span id="Password-error" role="alert" style={{ color: 'red' }}>{errors.Password}</span>}
                                 </p>
 
                                 <div className="back-check-box">
@@ -178,7 +197,7 @@ const LoginMain = () => {
                                 </div>
 
                                 <p>
-                                    <a href="/forgot-password">Forget password?</a>
+                                    <a href="/forgot-Password">Forget Password?</a>
                                 </p>
 
                                 <button type="submit" id="button" name="submit" disabled={isLoading}>
