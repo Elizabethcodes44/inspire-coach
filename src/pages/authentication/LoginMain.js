@@ -89,8 +89,8 @@ const LoginMain = () => {
                     const role = result.role
                     if (role == 'coach'){
                         // Save the token to localStorage
-                    localStorage.setItem('authToken', result.token);
-                    console.log( "this is coach token:", localStorage.getItem("authToken"));
+                    localStorage.setItem('coachAuthToken', result.token);
+                    console.log( "this is coach token:", localStorage.getItem("coachAuthToken"));
                         setPopup({
                             message: "Login successful!",
                             type: "success",

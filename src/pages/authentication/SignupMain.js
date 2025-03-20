@@ -132,11 +132,11 @@ const SignupMain = () => {
                     localStorage.setItem('userEmail', formData.Email);
     
                     setPopup({
-                        message: "Registration successful! An OTP has been sent to your Email",
+                        message: "Registration successful!",
                         type: "success",
                         isVisible: true,
-                        buttonLabel: "Proceed to enter OTP received",
-                        buttonRoute: "/otp",
+                        buttonLabel: "Continue",
+                        buttonRoute: "/login",
                     });
                 } else {
                     console.error('Registration failed:', result);
