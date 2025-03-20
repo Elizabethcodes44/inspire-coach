@@ -3,12 +3,13 @@ import UserCard from '../../components/Coach/UserCard';
 import './ManageUsers.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
-import { Typography, TextField, Button, InputAdornment } from '@mui/material';
+import { Typography, TextField, Button, InputAdornment, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import UsersOverview from '../../components/Coach/UsersOverview';
 
 function ManageUsers() {
   const [searchQuery, setSearchQuery] = useState('');
   const [users, setUsers] = useState([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
     // Fetch user details from the backend
@@ -21,7 +22,15 @@ function ManageUsers() {
   const handleSearch = (newValue) => {
     console.log(newValue);
     setSearchQuery(newValue);
-  }
+  };
+
+  const handlePopupOpen = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handlePopupClose = () => {
+    setIsPopupOpen(false);
+  };
 
   return (
     <div id='manage-tasks-container'>
