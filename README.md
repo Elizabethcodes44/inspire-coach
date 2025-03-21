@@ -1,5 +1,4 @@
 # Inspire Coach AI App
-# Frontend README
 
 ## Project Overview
 This is the frontend for our AI-powered job coaching application. The application helps job seekers and coaches by breaking down tasks, sending smart reminders, generating progress reports, and improving accessibility through AI-driven communication tools.
