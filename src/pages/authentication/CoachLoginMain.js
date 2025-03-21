@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Popup from '../../components/Popup/Popup'
 
-const CoachLoginMain = () => {
+const LoginMain = () => {
     const navigate = useNavigate();
     const [popup, setPopup] = useState({ message: "", type: "", isVisible: false, buttonLabel: "", buttonRoute: "" });
 
@@ -124,8 +124,8 @@ const handleSubmit = async (e) => {
                         <div className="login-right-form">
                             <form onSubmit={handleSubmit}>
                                 <div className="login-top">
-                                    <h3>Coach Login</h3>
-                                    <p>Don't have an account yet? <a href="/signup">Sign up for free</a></p>
+                                    <h3>Coach- Login</h3>
+                                    <p>Don't have an account yet? <span className='red'> Contact your coach </span> or <a href="/signup" className='auth-link'> Sign up as a coach  free</a></p>
                                 </div>
 
                                 <p>
@@ -204,4 +204,4 @@ const handleSubmit = async (e) => {
     );
 };
 
-export default CoachLoginMain;
+export default LoginMain;

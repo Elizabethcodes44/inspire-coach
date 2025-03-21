@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import { ROUTES, THEME_OPTIONS, USER_TYPES } from "./global";
@@ -19,10 +19,10 @@ import Coach from "./pages/coach/Coach";
 import ManageUsers from "./pages/coach/ManageUsers";
 import ViewUserTasks from "./pages/coach/ViewUserTasks";
 
-
-//auth toutes
+//auth routes
 import AdminProtectedRoute from "./app/AdminProctectedRoute";
 import ProtectedRoute from "./app/ProtectedRoute";
+import UserProtectedRoute from "./app/UserProtectedRoute";
 import AdminLogin from "./pages/authentication/adminLogin";
 import CoachLogin from "./pages/authentication/coachLogin";
 import Login from "./pages/authentication/login";
@@ -41,8 +41,7 @@ function AppContent() {
     defaultDark ? THEME_OPTIONS.DARK : THEME_OPTIONS.LIGHT
   );
   const [isLoading, setIsLoading] = useState(true);
-
-  // TODO: get logged in user and pass in user type to nav bar
+  const location = useLocation();
 
   useEffect(() => {
     setTimeout(() => {
@@ -50,18 +49,30 @@ function AppContent() {
     }, 500);
   }, []);
 
+  const noNavBarRoutes = ["/login", "/forgot-password", "/otp", "/adminlogin", "/signup", "/coachlogin"];
+  const noCoachNavBarRoutes = ["", "/", "/login", "/forgot-password", "/otp", "/adminlogin", "/signup", "/coachlogin", "/userhome", "/manage-tasks", "/view-task", "/admindashboard", "/userdashboard"];
+
+  const normalizePath = (path) => path.toLowerCase().replace(/\/$/, "");
+
+  const isNoCoachNavBarRoute = (path) => {
+    const normalizedPath = normalizePath(path);
+    return noCoachNavBarRoutes.includes(normalizedPath) || /^\/view-task\/\d+$/.test(normalizedPath);
+  };
+
   return (
     <div className="App" data-theme={theme}>
       {isLoading ? <Preloader /> : ""}
       <LoadTop />
-      <NavBar
-        defaultTheme={theme}
-        onThemeChange={(newTheme) => setTheme(newTheme)}
-        userType={USER_TYPES.coach}
-      />
+      {!noNavBarRoutes.includes(normalizePath(location.pathname)) && (
+        <NavBar
+          defaultTheme={theme}
+          onThemeChange={(newTheme) => setTheme(newTheme)}
+          userType={isNoCoachNavBarRoute(location.pathname) ? USER_TYPES.student : USER_TYPES.coach}
+        />
+      )}
       <Routes>
         <Route path={ROUTES.HOME_PAGE.route} element={<Home />} />
-        <Route path={ROUTES.MANAGE_TASKS.route} element={<ManageTasks />} />
+        <Route path={ROUTES.MANAGE_TASKS.route} element={  <UserProtectedRoute> <ManageTasks /> </UserProtectedRoute>} />
         <Route path={ROUTES.VIEW_TASK.route} element={<ViewTask />} />
 
         <Route path="/login" element={<Login />} />
@@ -80,10 +91,10 @@ function AppContent() {
           path="/userdashboard/*"
           element={<ProtectedRoute>{/* <UserDashboard /> */}</ProtectedRoute>}
         />
-        <Route path={ROUTES.MANAGE_USERS.route} element={<ManageUsers />} />
+        <Route path={ROUTES.MANAGE_USERS.route} element={ <ProtectedRoute> <ManageUsers /> </ProtectedRoute> } />
         <Route path="/" exact element={<Home />} />
         <Route path="/userHome" exact element={<Home />} />
-        <Route path="/coach" element={<Coach />} />
+        <Route path="/coach" element={ <ProtectedRoute> <Coach /> </ProtectedRoute>} />
         <Route path={ROUTES.VIEW_USER_TASKS.route} element={<ViewUserTasks />} />
         <Route path="/otp" element={<OTP />} />
 

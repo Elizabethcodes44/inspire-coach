@@ -3,12 +3,14 @@ import UserCard from '../../components/Coach/UserCard';
 import './ManageUsers.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
-import { Typography, TextField, Button, InputAdornment } from '@mui/material';
+import { Typography, TextField, Button, InputAdornment, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import UsersOverview from '../../components/Coach/UsersOverview';
+import SpeechToText from '../../components/SpeechToText';
 
 function ManageUsers() {
   const [searchQuery, setSearchQuery] = useState('');
   const [users, setUsers] = useState([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
     // Fetch user details from the backend
@@ -21,7 +23,15 @@ function ManageUsers() {
   const handleSearch = (newValue) => {
     console.log(newValue);
     setSearchQuery(newValue);
-  }
+  };
+
+  const handlePopupOpen = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handlePopupClose = () => {
+    setIsPopupOpen(false);
+  };
 
   return (
     <div id='manage-tasks-container'>
@@ -30,17 +40,13 @@ function ManageUsers() {
             <TextField 
                 id="manage-tasks-search-bar" 
                 variant="outlined" 
+                value={searchQuery}
+                onChange={newQuery => setSearchQuery(newQuery.target.value)}
                 slotProps={{
                     input: {
                         endAdornment: (
                         <InputAdornment position="end">
-                            <Button aria-label='Speech-to-text button for task search field'>
-                                <FontAwesomeIcon 
-                                    className='search-bar-speech-to-text-icon' 
-                                    icon={faMicrophone} 
-                                    style={{ color: 'var(--primary-text-color)' }}
-                                /> 
-                            </Button>
+                          <SpeechToText setTextCallback={setSearchQuery} />
                         </InputAdornment>
                         ),
                     },

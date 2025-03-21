@@ -1,0 +1,9 @@
+.speech-to-text-btn {
+    border: none;
+    background-color: var(--background-color);
+}
+
+.search-bar-speech-to-text-icon {
+    font-size: var(--default-icon-size);
+    margin: 0 10px;
+}

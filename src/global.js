@@ -1,5 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCircleExclamation, faClock } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+import Cookie from 'universal-cookie';
 
 export const APP_NAME = 'InspireCoach';
 
@@ -142,4 +144,35 @@ export const getNumTasksWithStatus = (tasks, status) => {
     });
 
     return numTasksWithStatus;
+}
+
+export async function getAzureSpeechTokenOrRefresh() {
+    const cookie = new Cookie();
+    const speechToken = cookie.get('speech-token');
+
+    if (speechToken === undefined) {
+        const speechKey = process.env.REACT_APP_SPEECH_KEY;
+        const speechRegion = process.env.REACT_APP_SPEECH_REGION;
+        
+        const headers = {
+            'Ocp-Apim-Subscription-Key': speechKey,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        };
+
+        try {
+            const tokenResponse = await axios.post(
+                `https://${speechRegion}.api.cognitive.microsoft.com/sts/v1.0/issueToken`,
+                null,
+                { headers }
+            );
+            const token = tokenResponse.data;
+            cookie.set('speech-token', speechRegion + ':' + token, {maxAge: 540, path: '/'});
+            return { authToken: token, region: speechRegion };
+        } catch (err) {
+            throw new Error('There was an error authorizing your speech key.');
+        }
+    } else {
+        const idx = speechToken.indexOf(':');
+        return { authToken: speechToken.slice(idx + 1), region: speechToken.slice(0, idx) };
+    }
 }

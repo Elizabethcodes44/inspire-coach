@@ -4,14 +4,19 @@ import { APP_NAME } from '../global';
 import './Home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faListCheck, faCalendarCheck, faCommentDots } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
-function Home() {
+
+const Home = (props)=> {
+    const { ctaBtn } = props;
   
   return (
     <div id='home-page-container-bg'>
         <div id='home-page-container'>
-            <h1 id='home-page-title'>Welcome to InspireCoach!</h1>
+           
             <img id='home-page-app-logo' src={AppLogo} alt={`${APP_NAME} logo: pink ribbon with green checkmark`} />
+            <h1 id='home-page-title'>Welcome to InspireCoach!</h1>
             <p id='home-page-description'>InspireCoach is an AI-powered application that helps people with disabilities navigate their jobs with task management tools and personalized coaching.</p>
             <div id='home-page-features-list'>
                 <p>
@@ -38,7 +43,11 @@ function Home() {
                     /> 
                     Connect with a coach to receive guidance
                 </p>
+                
+                        
+                
             </div>
+            <Button id='signUp' variant="contained" aria-label='Button to sign up' className="signup-coach-button"><Link to="/signup">Sign Up As a Coach </Link></Button>
         </div>
     </div>
   );
