@@ -113,7 +113,7 @@ const LoginMain = () => {
                     
                 } else {
                     console.error('Login failed:', result);
-                    const errorMessages = result.message
+                    const errorMessages = result.error;
                     setPopup({
                         message: `Login Failed: ${errorMessages}`,
                         type: "error",
