@@ -34,8 +34,3 @@ div:has(> #manage-tasks-search-bar) {
     border-radius: 10px;
     font-size: var(--default-font-size);
 }
-
-.search-bar-speech-to-text-icon {
-    font-size: var(--default-icon-size);
-    margin: 0 10px;
-}
