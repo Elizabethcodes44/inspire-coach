@@ -1,0 +1,13 @@
+.progress-bar-container {
+    display: flex;
+    align-items: center;
+}
+
+.progress-bar-scale {
+    margin: 0 10px;
+    height: 50px;
+}
+
+.progress-bar-label, .progress-bar-value-text {
+    font-size: var(--secondary-font-size);
+}

@@ -1,0 +1,33 @@
+
+
+.coach-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.filters {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+
+@media (min-width: 768px) {
+  .coach-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .filters {
+    width: 25%;
+    margin-right: 20px;
+  }
+
+
+}

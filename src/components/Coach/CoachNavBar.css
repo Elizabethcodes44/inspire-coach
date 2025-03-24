@@ -1,0 +1,80 @@
+#coachNav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+#coachNav-bar-app-logo-name-container {
+    display: flex;
+    align-items: center;
+}
+
+#coachNav-bar-app-logo {
+    width: 12%;
+    margin-right: 10px;
+    box-shadow: 0 0 5px 0 var(--primary-text-color);
+    border-radius: 50%;
+}
+
+#coachNav-bar-app-name {
+    font-size: 3rem;
+    margin: 1rem 0;
+    color: var(--primary-text-color);
+}
+
+#coachNav-bar-app-name-link {
+    text-decoration: none;
+}
+
+.coachNav-bar-link {
+    font-size: 2rem;
+    text-decoration: none;
+    color: var(--primary-text-color);
+}
+
+.coachNav-bar-link:hover, .coachNav-link-active {
+    text-decoration: underline !important;
+    color: var(--primary-text-color) !important;
+}
+
+#coachNav-bar-profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.react-switch-handle div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div:has(> .react-switch-handle) {
+    border: 2px solid var(--primary-text-color);
+}
+
+#alerts-btn {
+    margin: 0 50px;
+}
+
+#alerts-icon {
+    color: var(--primary-text-color);
+    font-size: 2.5rem;
+}
+
+#user-profile-container {
+    display: flex;
+    align-items: center;
+}
+
+#user-profile-icon {
+    color: var(--primary-text-color);
+    font-size: 2.5rem;
+    margin-right: 15px;
+}
+
+#user-profile-name {
+    font-size: 2rem;
+    margin: 0;
+}

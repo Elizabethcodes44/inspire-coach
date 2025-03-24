@@ -1,0 +1,7 @@
+.text-to-speech-btn {
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+    font-size: var(--default-icon-size);
+    border: none;
+    outline: none;
+}

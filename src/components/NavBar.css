@@ -1,0 +1,147 @@
+#nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+#nav-bar-app-logo-name-container {
+    display: flex;
+    align-items: center;
+}
+
+#nav-bar-app-logo {
+    width: 12%;
+    margin-right: 10px;
+    box-shadow: 0 0 5px 0 var(--primary-text-color);
+    border-radius: 50%;
+}
+
+#nav-bar-app-name {
+    font-size: 3rem;
+    margin: 1rem 0;
+    color: var(--primary-text-color);
+}
+
+#nav-bar-app-name-link {
+    text-decoration: none;
+}
+
+.nav-bar-link {
+    font-size: 2rem;
+    text-decoration: none;
+    color: var(--primary-text-color);
+}
+
+.nav-bar-link:hover, .nav-link-active {
+    text-decoration: underline !important;
+    color: var(--primary-text-color) !important;
+}
+
+#nav-bar-profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.react-switch-handle div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div:has(> .react-switch-handle) {
+    border: 2px solid var(--primary-text-color);
+    margin-right: .7rem;
+}
+
+#alerts-btn {
+    margin: 0 50px;
+}
+
+#alerts-icon {
+    color: var(--primary-text-color);
+    font-size: 2.5rem;
+}
+
+#user-profile-container {
+    display: flex;
+    align-items: center;
+}
+
+#user-profile-icon {
+    color: var(--primary-text-color);
+    font-size: 2.5rem;
+    margin-right: 15px;
+}
+
+#user-profile-name {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+    font-size: 2rem;
+    color: var(--primary-text-color);
+}
+
+
+@media (max-width: 800px) {
+    #nav-bar-links-container {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: var(--background-color);
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #nav-bar-links-container.open {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+    #nav-bar-app-name {
+        font-size: 1.5rem;
+        margin: 1rem 0;
+        color: var(--primary-text-color);
+    }
+
+    .nav-bar-link {
+        font-size: 1rem;
+        text-decoration: none;
+        color: var(--primary-text-color);
+    }
+    #nav-bar-profile-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    #user-profile-icon {
+        color: var(--primary-text-color);
+        font-size: 1.5rem;
+        margin-right: 15px;
+    }
+    
+    #user-profile-name {
+        font-size: 1rem;
+        margin: 0;
+    }
+    #alerts-icon {
+        color: var(--primary-text-color);
+        font-size: 1.5rem;
+    }
+}

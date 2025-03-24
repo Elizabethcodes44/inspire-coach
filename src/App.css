@@ -1,38 +1,89 @@
+:root {
+  --white: #F5F5F5;
+  --black: #121212;
+  --purple: rgb(62,14,105);
+  --pink: rgb(190,46,134);
+  --green: #13e49f;
+
+  --background-color: var(--white);
+  --primary-text-color: var(--black);
+  --button-bg-color: var(--green);
+  --auth-link-color: var(--purple);
+
+  --status-on-track: #19b719;
+  --status-behind: #bda30f;
+  --status-due-soon: #d71e1e;
+  --status-overdue: #8B0000;
+
+  --default-font-size: 1.75rem;
+  --secondary-font-size: calc(var(--default-font-size) * 0.9);
+
+  --default-icon-size: 2.5rem;
+
+  --colored-text-bg: transparent;
+  --colored-text-border-radius: 0;
+  --gradient-box-shadow: 5px 5px 10px #070707,
+  -5px -5px 10px #1d1d1d;
+
+  --element-hover-bg: rgba(176, 176, 176, 0.25);
+
+  --progress-bar-default-width: 100%;
+  --progress-bar-secondary-width: 100%;
+}
+
+[data-theme='dark'] {
+  --background-color: var(--black);
+  --primary-text-color: var(--white);
+
+  --button-bg-color: var(--purple);
+  --auth-link-color: var(--pink);
+
+  --colored-text-bg: var(--white);
+  --colored-text-border-radius: 15px;
+
+  --gradient-box-shadow: 5px 5px 10px #626262,
+  -5px -5px 10px #ffffff;
+  --element-hover-bg: rgba(255, 255, 255, 0.25);
+}
+
+body, html {
+  height: 100%;
+}
+
 .App {
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+  height: 100%;
+  padding-bottom: 30px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.box-shadow-gradient {
+  box-shadow: var(--gradient-box-shadow);
+}
+.tasks-overview-item-date {
+  font-size: var(--secondary-font-size);
+  margin: 0;
+  margin-right: 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.contact-btn{
+  margin-left: 10px  !important;
+  box-shadow: inset 0 0 2px 2px transparent, inset 0 0 3px 2px var(--primary-text-color)  !important;
+  background: var(--background-color) !important;
+  padding: 1px 15px  !important;
+  font-size: .5rem  !important;
+  border-radius: 25px  !important;
+  font-size: 16px  !important;
+  color: var(--primary-text-color) !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.auth-link{
+  color: var(--auth-link-color);
+  text-decoration: underline;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.red{
+  color: red;
 }
