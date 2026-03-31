@@ -1,9 +1,6 @@
 {
   "name": "inspire-coach",
   "version": "0.1.0",
-  "overrides": {
-  "node-forge": "1.4.0"
-},
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
