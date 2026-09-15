@@ -26,7 +26,7 @@ const ApplicationDetail = () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_URL}/api/admin/fetchone/${id}`,
+          `${import.meta.env.VITE_URL}/api/admin/fetchone/${id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         console.log(response);
@@ -75,7 +75,7 @@ const ApplicationDetail = () => {
           <p><strong>Profile Picture:</strong></p>
           {application.profile_picture ? (
             <img
-              src={`${process.env.REACT_APP_URL}/storage/uploads/${application.profile_picture}`}
+              src={`${import.meta.env.VITE_URL}/storage/uploads/${application.profile_picture}`}
               alt="Profile"
               style={{ width: '150px', height: '150px', borderRadius: '50%' }}
             />
@@ -94,32 +94,32 @@ const ApplicationDetail = () => {
           <p><strong>Research Title:</strong> {application.research?.research_title || 'N/A'}</p>
           <p><strong>Research Abstract:</strong> {application.research?.abstract || 'N/A'}</p>
           <p><strong>Research Proposal:</strong> {application.research?.research_proposal ? (
-              <a href={`${process.env.REACT_APP_URL}/storage/uploads/proposals/${application.research?.research_proposal}`} target="_blank" rel="noopener noreferrer">View Research Proposal</a>
+              <a href={`${import.meta.env.VITE_URL}/storage/uploads/proposals/${application.research?.research_proposal}`} target="_blank" rel="noopener noreferrer">View Research Proposal</a>
             ) : 'N/A'}</p>
           <p><strong>Research Costing:</strong> {application.research?.costing ? (
-              <a href={`${process.env.REACT_APP_URL}/storage/uploads/costing/${application.research?.costing }`} target="_blank" rel="noopener noreferrer">View Costing</a>
+              <a href={`${import.meta.env.VITE_URL}/storage/uploads/costing/${application.research?.costing }`} target="_blank" rel="noopener noreferrer">View Costing</a>
             ) : 'N/A'}</p>
 
           {/* Co-Applicants */}
           <h4>Co-Applicants</h4>
           <p><strong>Co-Applicant 1:</strong> {application.co_applicant ? `${application.co_applicant.title?.title} ${application.co_applicant.first_name} ${application.co_applicant.last_name}` : 'None'}</p>
           <p><strong>Co-Applicant 1 CV:</strong> {application.co_applicant?.cv ? (
-              <a href={`${process.env.REACT_APP_URL}/storage/uploads/cvs/${application.co_applicant?.cv}`} target="_blank" rel="noopener noreferrer">View Co-applicant CV</a>
+              <a href={`${import.meta.env.VITE_URL}/storage/uploads/cvs/${application.co_applicant?.cv}`} target="_blank" rel="noopener noreferrer">View Co-applicant CV</a>
             ) : 'N/A'}</p>
           <p><strong>Co-Applicant 2:</strong> {application.co_applicant2 ? `${application.co_applicant2.title?.title} ${application.co_applicant2.first_name} ${application.co_applicant2.last_name}` : 'None'}</p>
           <p><strong>Co-Applicant 2 CV:</strong> {application.co_applicant2?.cv ? (
-              <a href={`${process.env.REACT_APP_URL}/storage/uploads/cvs/${application.co_applicant2?.cv}`} target="_blank" rel="noopener noreferrer">View Co-applicant2 CV</a>
+              <a href={`${import.meta.env.VITE_URL}/storage/uploads/cvs/${application.co_applicant2?.cv}`} target="_blank" rel="noopener noreferrer">View Co-applicant2 CV</a>
             ) : 'N/A'}</p>
           {/* Institution Documents */}
           <h4>Institution Documents</h4>
           <p><strong>Institution Support Letter:</strong> 
             {application.institution?.inst_sup_letter ? (
-              <a href={`${process.env.REACT_APP_URL}/storage/uploads/letters/${application.institution.inst_sup_letter}`} target="_blank" rel="noopener noreferrer">View Support Letter</a>
+              <a href={`${import.meta.env.VITE_URL}/storage/uploads/letters/${application.institution.inst_sup_letter}`} target="_blank" rel="noopener noreferrer">View Support Letter</a>
             ) : 'None'}
           </p>
           <p><strong>CV:</strong> 
             {application.institution?.cv ? (
-              <a href={`${process.env.REACT_APP_URL}/storage/uploads/cvs/${application.institution.cv}`} target="_blank" rel="noopener noreferrer">View CV</a>
+              <a href={`${import.meta.env.VITE_URL}/storage/uploads/cvs/${application.institution.cv}`} target="_blank" rel="noopener noreferrer">View CV</a>
             ) : 'None'}
           </p>
 

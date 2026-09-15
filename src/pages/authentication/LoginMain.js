@@ -67,7 +67,7 @@ const LoginMain = () => {
             };
 
             try {
-                const apiUrl = process.env.REACT_APP_URL ; // Add a fallback URL
+                const apiUrl = import.meta.env.VITE_URL ; // Add a fallback URL
             console.log('API URL:', apiUrl); // Log the environment variable
 
                 const response = await fetch(`${apiUrl}/api/users/userlogin`, {

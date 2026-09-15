@@ -67,7 +67,7 @@ const handleSubmit = async (e) => {
             };
 
             try {
-                const response = await fetch(`${process.env.REACT_APP_URL}/api/admin/ffsg/admin20/login24`, {
+                const response = await fetch(`${import.meta.env.VITE_URL}/api/admin/ffsg/admin20/login24`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
