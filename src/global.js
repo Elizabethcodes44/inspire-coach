@@ -151,8 +151,8 @@ export async function getAzureSpeechTokenOrRefresh() {
     const speechToken = cookie.get('speech-token');
 
     if (speechToken === undefined) {
-        const speechKey = process.env.REACT_APP_SPEECH_KEY;
-        const speechRegion = process.env.REACT_APP_SPEECH_REGION;
+        const speechKey = import.meta.env.VITE_SPEECH_KEY;
+        const speechRegion = import.meta.env.VITE_SPEECH_REGION;
         
         const headers = {
             'Ocp-Apim-Subscription-Key': speechKey,

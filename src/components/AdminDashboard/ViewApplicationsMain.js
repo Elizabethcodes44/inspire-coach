@@ -58,7 +58,7 @@ const ViewApplicationsMain = () => {
   setIsLoading(true);
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_URL}/api/admin/fetchall?page=${page}`,
+      `${import.meta.env.VITE_URL}/api/admin/fetchall?page=${page}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     setApplications(response.data);
@@ -95,7 +95,7 @@ useEffect(() => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_URL}/api/admin/update-status/${applicationID}`,
+        `${import.meta.env.VITE_URL}/api/admin/update-status/${applicationID}`,
         { status: statusID },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -144,7 +144,7 @@ useEffect(() => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_URL}/api/admin/delete-application`,
+        `${import.meta.env.VITE_URL}/api/admin/delete-application`,
         { id: applicationID },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -222,7 +222,7 @@ useEffect(() => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_URL}/api/admin/query-application/${applicationID}`,
+        `${import.meta.env.VITE_URL}/api/admin/query-application/${applicationID}`,
         { reason },
         { headers: { Authorization: `Bearer ${token}` } }
       );

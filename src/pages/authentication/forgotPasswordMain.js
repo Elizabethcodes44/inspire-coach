@@ -68,7 +68,7 @@ const ForgotPasswordMain = () => {
             };
 
             try {
-                const response = await fetch(`${process.env.REACT_APP_URL}/api/confirm-user`, {
+                const response = await fetch(`${import.meta.env.VITE_URL}/api/confirm-user`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

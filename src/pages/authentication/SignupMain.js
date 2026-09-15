@@ -110,7 +110,7 @@ const SignupMain = () => {
                 // userType: formData.userType
             };
 
-            const apiUrl = process.env.REACT_APP_URL ; // Add a fallback URL
+            const apiUrl = import.meta.env.VITE_URL ; // Add a fallback URL
             console.log('API URL:', apiUrl); // Log the environment variable
     
             try {

@@ -62,7 +62,7 @@ const OtpMain = () => {
                 otp: formData.otpCode,
             };
             try {
-                const response = await fetch(`${process.env.REACT_APP_URL}/api/verify-otp`, {
+                const response = await fetch(`${import.meta.env.VITE_URL}/api/verify-otp`, {
                     method: 'POST', 
                     headers: {
                         'Content-Type': 'application/json'
